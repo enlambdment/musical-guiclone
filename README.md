@@ -1,35 +1,32 @@
-Welcome to Glitch
+prototype
 =================
 
-Click `Show` in the header to see your app live. Updates to your code will instantly deploy and update live.
-
-**Glitch** is the friendly community where you'll build the app of your dreams. Glitch lets you instantly create, remix, edit, and host an app, bot or site, and you can invite collaborators or helpers to simultaneously edit code with you.
-
-Find out more [about Glitch](https://glitch.com/about).
+Expose a simplified version of the musical GUI via [coconet](https://coconet.glitch.me/#) -
+* no machine learning model
+* only two voices 
+* when a note is input in one voice, only the consonant pitches in the other voice should be available for selection
 
 
 Your Project
 ------------
 
+In principle, should consist only of:
+
 ### ← README.md
 
-That's this file, where you can tell people what your cool website does and how you built it.
+(i.e. this file itself)
 
 ### ← index.html
 
-Where you'll write the content of your website. 
+(i.e. where I'll write the contents of the single-page site)
 
 ### ← style.css
 
-CSS files add styling rules to your content.
+(add styling rules to my content)
 
 ### ← script.js
 
-If you're feeling fancy you can add interactivity to your site with JavaScript.
-
-### ← assets
-
-Drag in `assets`, like images or music, to add them to your project
+(this is where interactivity will come from)
 
 Made by [Glitch](https://glitch.com/)
 -------------------
