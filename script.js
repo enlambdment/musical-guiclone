@@ -1,31 +1,17 @@
-/* If you're feeling fancy you can add interactivity 
-    to your site with Javascript */
+// const canvas = document.querySelector('canvas');
+// const ctx = canvas.getContext('2d');
+const body = document.querySelector('body');
 
-// Can I:
-// 1. locate the 'container' class'ed element from the html DOM
-// 2. add event listeners for mousedown / mouseup events
-// 3. respond to mousedown events / mouseup events by modifying
-//    some variable that I then can
-// 4. print out to console?
-let isMouseDown = false;
-
-init();
-
-function init () {
-  const container = document.getElementById("container");
-  container.addEventListener("mousedown", e => {
-    isMouseDown = true;
-    doClick(e);
-  })
-  
-  container.addEventListener("mouseup", e => {
-    isMouseDown = false;
-  })
+// function to generate random integer within a range
+function random(min, max) {
+  const num = Math.floor(Math.random() * (max - min + 1)) + min;
+  return num
 }
 
-function doClick(event) {
-  let tgt;
-  tgt = event.target;
-  console.log(tgt);
-  console.log(typeof(tgt));
-}
+// how to define a constructor for button elements
+// that I can then populate into a grid?
+const rand_x = random(3,6);
+const rand_y = random(3,6);
+
+// double loop
+// for each 
