@@ -13,5 +13,8 @@ function random(min, max) {
 const rand_x = random(3,6);
 const rand_y = random(3,6);
 
-// double loop
-// for each 
+/* double loop. Loosely speaking:
+1. for each i in range(rand_x), create a column
+    (represented generically as an unordered list 'ul'?)
+2. then, to that i'th col, add for each j in range(rand_y)
+*/
