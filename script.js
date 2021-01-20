@@ -10,8 +10,8 @@ function random(min, max) {
 
 // how to define a constructor for button elements
 // that I can then populate into a grid?
-const rand_x = random(3,6);
-const rand_y = random(3,6);
+const rand_x = random(3, 6);
+const rand_y = random(3, 6);
 
 /* double loop. Loosely speaking
 (using 'ul' for unordered list won't really do it because
@@ -30,4 +30,12 @@ for (let i = 0; i < rand_x; i++) {
     var button = document.createElement('button');
     button_col.appendChild(button);
   }
+  document.body.append(button_col);
 }
+
+/* 
+ So far, each button_col is getting
+ populated with buttons - good!
+ But, each button_col is getting shown
+ horizontally, instead of as a column - bad!
+*/
