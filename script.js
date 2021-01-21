@@ -80,17 +80,12 @@ class ButtonGrid {
           // Get the maximum possible col and row indices.
           let containerEl = this.parentNode.parentNode;
           let maxCol = parseInt(containerEl.dataset.gridWidth) - 1;
+          console.log(maxCol);
           let maxRow = parseInt(containerEl.dataset.gridHeight) - 1;
+          console.log(maxRow);
           
-          // Never go off the grid
-          let leftBound = Math.max(0, buttonRow - 1);
-          console.log(leftBound);
-          let rightBound = Math.min(buttonRow + 1, maxCol);
-          console.log(rightBound);
-          let topBound = Math.max(0, buttonCol - 1);
-          console.log(topBound);
-          let bottomBound = Math.min(buttonCol + 1, maxRow);
-          console.log(bottomBound);
+          // There's going to be some Array / map / filter stuff going on.
+          let subgridIndices = undefined;
           
           /* The better approach is to
                a. create the 3-x-3 subgrid of locations (index tuples)
