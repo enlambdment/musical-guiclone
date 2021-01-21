@@ -65,6 +65,25 @@ class ButtonGrid {
         button.dataset.row = i;
         button.dataset.col = j;
         
+        
+        /* TODO TODO TODO TODO TODO TODO TODO TODO 
+        
+          Having this big anonymous function provided directly to every
+          button, in the 'button.onclick = function () { ... }' statement
+          below, feels unfortunate because such a big piece of functionality
+          should really (maybe?) be brought 'higher-level', possibly even as 
+          a ButtonGrid method (?)
+          
+          In that way, the ButtonGrid method to perform this logic would 
+          accept explicit parameters for row & col position of a button, and
+          meanwhile some event-handler in the main (not the ButtonGrid class) code
+          would take care of handling mouse-click events by identifying the button
+          clicked on, getting those parameters & passing them to this method.
+          
+          So, refactor this once I get the chance!
+        
+           TODO TODO TODO TODO TODO TODO TODO TODO */
+        
         // give every button a function reference saying to do a specific
         // thing once the button is clicked.
         // Why doesn't this work if I try to factor out the function
@@ -129,8 +148,26 @@ class ButtonGrid {
           // Then, filter down based upon .dataset.row / .dataset.col custom attributes,
           // using neighborIndices that we built above
           let neighbors = arrEmojiclicks
+          // What I really am trying to do is filter down neighbors, an array of buttons,
+          // to just those array members which satisfy the predicate:
+          // [button.dataset.col, button.dataset.row] in neighborIndices
+          // ... but this gets back to the fact that you don't just slap an 
+          // '==' between 2 arrays to compare them.
+          // Still, I think I can manage.
             .filter(button => 
-                (button.dataset.)
+                (neighborIndices.some(arr => 
+                    (arr[0] == button.dataset.col && arr[1] == button.dataset.row))));
+          
+          // does this work? If it does, then I should get
+          // neighbors.length == neighborIndices.length
+          console.log(neighbors);
+          console.log(neighbors.length == neighborIndices.length);
+          
+          // The goal of getting these neighbor elements is to 
+          // 1. identify the emojis in each of them, then
+          // 2. make an array of these and 
+          // 3. select randomly from the array, subsequently
+          // 4. *re-assigning the current-button innerHTML 
           }
         
         // add the current (i'th) button to the current (j'th) list
