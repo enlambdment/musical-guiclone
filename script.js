@@ -36,18 +36,7 @@ class ButtonGrid {
     this.ui = {};
     this.reset();
   }
-  
-  // I think I may need to include this function
-  // somewhere in the body of 'constructor' method
-  // so that it will be a method of ButtonGrid objects (??)
-  logRowAndCol() {
-    // 'Within the function, 'this' will be the object that
-    // 'onclick' was bound to'
-    let buttonRow = this.dataset.row;
-    let buttonCol = this.dataset.col;
-    console.log(buttonCol, buttonRow);
-  }
-  
+    
   reset() {
     // get id='container' el, which here is a 'div' el
     this.ui.container = document.getElementById('container');
@@ -75,8 +64,25 @@ class ButtonGrid {
         button.dataset.col = j;
         
         // give every button a function reference saying to do a specific
-        // thing once the button is clicked?
-        // button.onclick = logRowAndCol();
+        // thing once the button is clicked.
+        // Why doesn't this work if I try to factor out the function
+        // and give it a name, as a method of ButtonGrid class?
+        button.onclick = function () {
+            // 'Within the function, 'this' will be the object that
+            // 'onclick' was bound to'
+            let buttonRow = this.dataset.row;
+            let buttonCol = this.dataset.col;
+          
+            // for debugging
+            console.log(buttonCol, buttonRow);
+          
+            // I now need to grab the 'innerHTML' of all adjacent button els,
+            // so this will require me to access the parent node & then get 
+            // those of its children nodes which satisfy that condition
+          
+            // can I see what element I've clicked on, in JS console?
+            console.log(this);
+          }
         
         // add the current (i'th) button to the current (j'th) list
         rowEl.appendChild(button);
