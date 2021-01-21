@@ -73,60 +73,52 @@ class ButtonGrid {
           // 'Within the function, 'this' will be the object that
           // 'onclick' was bound to'.
           
-          /* Is this a problem for what I try to do later?
-            Later below, I need the ButtonGrid object grid_height / grid_width
-            dimension attributes, but those belong to the *JavaScript object* 
-            and not the HTML 'button' el identified by 'this' within current
-            function scope. Nor are they available anywhere within the DOM tree.
-            SOLUTION: Use the 'dataset' HTML attribute to assign these to the
-            top-level enclosing HTML element that surrounds the entire grid!
-          */
-          let buttonRow = this.dataset.row;
-          let buttonCol = this.dataset.col;
-          
-          // for debugging
-          console.log(buttonCol, buttonRow);
-          
-          // I now need to grab the 'innerHTML' of all adjacent button els,
-          // so this will require me to access the parent node & then get 
-          // those of its children nodes which satisfy that condition
-          
-          // can I see what element I've clicked on, in JS console?
-          console.log(this.parentNode.parentNode);
-          /* Typical output is like e.g.
-          <button class="emojiclick" data-row="2" data-col="2">💙</button>
-          */
-          
+          let buttonRow = parseInt(this.dataset.row);
+          let buttonCol = parseInt(this.dataset.col);
+                    
           // Define range in which to get neighbors.
           // Get the maximum possible col and row indices.
           let containerEl = this.parentNode.parentNode;
-          let maxRight = containerEl.dataset.gridWidth - 1;
-          let maxBottom = containerEl.dataset.gridHeight - 1;
+          let maxCol = parseInt(containerEl.dataset.gridWidth) - 1;
+          let maxRow = parseInt(containerEl.dataset.gridHeight) - 1;
           
           // Never go off the grid
           let leftBound = Math.max(0, buttonRow - 1);
-          let rightBound = Math.min(buttonRow + 1, maxRight);
+          console.log(leftBound);
+          let rightBound = Math.min(buttonRow + 1, maxCol);
+          console.log(rightBound);
           let topBound = Math.max(0, buttonCol - 1);
-          let bottomBound = Math.min(buttonCol + 1, maxBottom);
+          console.log(topBound);
+          let bottomBound = Math.min(buttonCol + 1, maxRow);
+          console.log(bottomBound);
           
-          // Get surrounding elements.
-          // Maybe I can just get all button elements & then
-          // restrict conditionally based upon the custom dataset properties
-          // 'data-row', 'data-col'?
-          let allEmojiclicks = this.parentNode.querySelectorAll('.emojiclick');
-            // From here, restrict to just those having
-            //     buttonRow - 1 <= row attribute <= buttonRow + 1
-            //     buttonCol - 1 <= col attribute <= buttonCol + 1
-            // but not landing outside of the range of the grid size
-          console.log(allEmojiclicks);
-          console.log(typeof(allEmojiclicks));
+          /* The better approach is to
+               a. create the 3-x-3 subgrid of locations (index tuples)
+                  centered at the (col, row) of the current button being
+                  clicked on;
+              b.  then, filter out the current button's tuple
+              c.  and all those which lie off the grid
+                
+          */
           
-          // ?
-          let neighbors = allEmojiclicks
-            .filter(button => 
-                button.dataset.row in [topBound, bottomBound] &&
-                button.dataset.col in [leftBound, rightBound]);
-          console.log(neighbors);
+//           // Get surrounding elements.
+//           // First get all button elements
+//           let allEmojiclicks = containerEl.querySelectorAll('div button');
+
+//           console.log(allEmojiclicks);
+//           console.log(typeof(allEmojiclicks));
+          
+//           // From here, restrict to just those having
+//           //     buttonRow - 1 <= row attribute <= buttonRow + 1
+//           //     buttonCol - 1 <= col attribute <= buttonCol + 1
+//           // but not landing outside of the range of the grid size
+//           let arrEmojiclicks = Array.from(allEmojiclicks);
+//           console.log(arrEmojiclicks);
+//           let neighbors = arrEmojiclicks
+//             .filter(button => 
+//                 buttonRow in [topBound, bottomBound] &&
+//                 buttonCol in [leftBound, rightBound]);
+//           console.log(neighbors);
           }
         
         // add the current (i'th) button to the current (j'th) list
