@@ -37,6 +37,17 @@ class ButtonGrid {
     this.reset();
   }
   
+  // I think I may need to include this function
+  // somewhere in the body of 'constructor' method
+  // so that it will be a method of ButtonGrid objects (??)
+  logRowAndCol() {
+    // 'Within the function, 'this' will be the object that
+    // 'onclick' was bound to'
+    let buttonRow = this.dataset.row;
+    let buttonCol = this.dataset.col;
+    console.log(buttonCol, buttonRow);
+  }
+  
   reset() {
     // get id='container' el, which here is a 'div' el
     this.ui.container = document.getElementById('container');
@@ -62,10 +73,18 @@ class ButtonGrid {
         button.classList.add('emojiclick');
         button.dataset.row = i;
         button.dataset.col = j;
+        
+        // give every button a function reference saying to do a specific
+        // thing once the button is clicked?
+        // button.onclick = logRowAndCol();
+        
+        // add the current (i'th) button to the current (j'th) list
         rowEl.appendChild(button);
       }
     }
   }
+  
+
 }
 
 // once we create a ButtonGrid instance,
