@@ -101,18 +101,32 @@ class ButtonGrid {
           // Get the maximum possible col and row indices.
           let containerEl = this.parentNode.parentNode;
           let maxRight = containerEl.dataset.gridWidth - 1;
-          let maxBottom = containerEl.datas
-          let leftBound = Math.max(0, buttonRow - 1)
-          let rightBound = Math.min()
+          let maxBottom = containerEl.dataset.gridHeight - 1;
           
-//           // get surrounding elements
-//           let neighbors = this.parentNode.querySelectorAll(
-//             // CSS selector string to get all child 'emojiclick'-class
-//             // elements having
-//             //     buttonRow - 1 <= row attribute <= buttonRow + 1
-//             //     buttonCol - 1 <= col attribute <= buttonCol + 1
-//             // but not landing outside of the range of the grid size
-//             );
+          // Never go off the grid
+          let leftBound = Math.max(0, buttonRow - 1);
+          let rightBound = Math.min(buttonRow + 1, maxRight);
+          let topBound = Math.max(0, buttonCol - 1);
+          let bottomBound = Math.min(buttonCol + 1, maxBottom);
+          
+          // Get surrounding elements.
+          // Maybe I can just get all button elements & then
+          // restrict conditionally based upon the custom dataset properties
+          // 'data-row', 'data-col'?
+          let allEmojiclicks = this.parentNode.querySelectorAll('.emojiclick');
+            // From here, restrict to just those having
+            //     buttonRow - 1 <= row attribute <= buttonRow + 1
+            //     buttonCol - 1 <= col attribute <= buttonCol + 1
+            // but not landing outside of the range of the grid size
+          console.log(allEmojiclicks);
+          console.log(typeof(allEmojiclicks));
+          
+          // ?
+          let neighbors = allEmojiclicks
+            .filter(button => 
+                button.dataset.row in [topBound, bottomBound] &&
+                button.dataset.col in [leftBound, rightBound]);
+          console.log(neighbors);
           }
         
         // add the current (i'th) button to the current (j'th) list
