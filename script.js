@@ -99,17 +99,23 @@ class ButtonGrid {
               b.  then, filter out the current button's tuple
               c.  and all those which lie off the grid     
           */
+          
+          // DOUBLE-CHECK that the first part of this logic (preceding 'filter') works correctly!
           let neighborIndices = colIndices
             .map(colIdx => rowIndices
                 .map(rowIdx => [colIdx, rowIdx]))
                   .reduce((acc, x) => acc.concat(x), [])
                     .filter(arr =>
                       // exclude current button being clicked
-                      (arr !== [buttonCol, buttonRow]) &&
-                      // col-part (x-coord) must not lie off the grid
-                      ((arr[0] >= 0) && (arr[0] <= maxCol)) &&
-                      // row-part (y-coord) must not lie off the grid
-                      ((arr[1] >= 0) && (arr[1] <= maxRow)));
+                      (arr != [buttonCol, buttonRow]) 
+                      //       &&
+                      // // col-part (x-coord) must not lie off the grid
+                      // ((arr[0] >= 0) && (arr[0] <= maxCol)) &&
+                      // // row-part (y-coord) must not lie off the grid
+                      // ((arr[1] >= 0) && (arr[1] <= maxRow))
+                           )
+          ;
+          
           console.log(neighborIndices);
                     
           
