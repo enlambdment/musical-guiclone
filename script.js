@@ -18,9 +18,9 @@ const rand_y = random(3, 6);
 
 // some emojis to play around with?
 const EMOJI_LIST = [
-  '📗', '🔒', '🛡️', '💊', '🔮', '🗿',
-  '💣', '💈', '💙', '🎴', '📯', '🎾',
-  '🎱', '🎯', '🎲', '🥁', '🔥', '🦄'];
+  '📗', '🔒', '🛡️', '🔮', '🗿', '💈', 
+  '💙', '🎴', '📯', '🎾', '🎱', '🎲', 
+  '🥁', '🦄', '🛎️', '💎', '🏮', '🛢️'];
 
 function randomEmoji() {
   let randIdx = random(0, EMOJI_LIST.length - 1);
@@ -82,6 +82,12 @@ class ButtonGrid {
           
             // can I see what element I've clicked on, in JS console?
             console.log(this);
+            /* Typical output is like e.g.
+            <button class="emojiclick" data-row="2" data-col="2">💙</button>
+            */
+          
+            // get surrounding elements
+            neighbors = 
           }
         
         // add the current (i'th) button to the current (j'th) list
@@ -97,7 +103,13 @@ class ButtonGrid {
 // we still have to place it somewhere in the 
 // DOM for it to appear on the page
 const myButtonGrid = new ButtonGrid();
-body.appendChild(myButtonGrid);
+
+/* The below is unnecessary!
+    Reason: Upon creating a new ButtonGrid instance, the new object's
+    own 'reset()' method is called, which in turn takes care of creating 
+    each row, in turn, and populating it with button el's.
+*/
+// body.appendChild(myButtonGrid);
 
   /* IDEA FOR NEXT TIME:
   Add some functionality so that, upon the click event
