@@ -40,6 +40,10 @@ class ButtonGrid {
     this.ui.container = document.getElementById('container');
     // blank out el contents
     this.ui.container.innerHTML = '';
+    // Assigning grid dimensions using 'dataset' custom attr's
+    // so we can use them later on
+    this.ui.container.dataset.gridWidth = this.grid_width;
+    this.ui.container.dataset.gridHeight = this.grid_height;
     
     // recreate the grid.
     for (let i=0; i < this.grid_height; i++) {
@@ -67,7 +71,16 @@ class ButtonGrid {
         // and give it a name, as a method of ButtonGrid class?
         button.onclick = function () {
           // 'Within the function, 'this' will be the object that
-          // 'onclick' was bound to'
+          // 'onclick' was bound to'.
+          
+          /* Is this a problem for what I try to do later?
+            Later below, I need the ButtonGrid object grid_height / grid_width
+            dimension attributes, but those belong to the *JavaScript object* 
+            and not the HTML 'button' el identified by 'this' within current
+            function scope. Nor are they available anywhere within the DOM tree.
+            SOLUTION: Use the 'dataset' HTML attribute to assign these to the
+            top-level enclosing HTML element that surrounds the entire grid!
+          */
           let buttonRow = this.dataset.row;
           let buttonCol = this.dataset.col;
           
@@ -79,21 +92,24 @@ class ButtonGrid {
           // those of its children nodes which satisfy that condition
           
           // can I see what element I've clicked on, in JS console?
-          console.log(this);
+          console.log(this.parentNode.parentNode);
           /* Typical output is like e.g.
           <button class="emojiclick" data-row="2" data-col="2">💙</button>
           */
           
+//           // define range in which to get neighbors
+//           // NEED: The top-level ButtonGrid object's grid_width / grid_height attributes
+//           let leftBound = Math.max(0, buttonRow - 1)
+//           let rightBound = Math.min()
           
-          
-          // get surrounding elements
-          let neighbors = this.parentNode.querySelectorAll(
-            // CSS selector string to get all child 'emojiclick'-class
-            // elements having
-            //     buttonRow - 1 <= row attribute <= buttonRow + 1
-            //     buttonCol - 1 <= col attribute <= buttonCol + 1
-            // but not landing outside of the range of the grid size
-            );
+//           // get surrounding elements
+//           let neighbors = this.parentNode.querySelectorAll(
+//             // CSS selector string to get all child 'emojiclick'-class
+//             // elements having
+//             //     buttonRow - 1 <= row attribute <= buttonRow + 1
+//             //     buttonCol - 1 <= col attribute <= buttonCol + 1
+//             // but not landing outside of the range of the grid size
+//             );
           }
         
         // add the current (i'th) button to the current (j'th) list
