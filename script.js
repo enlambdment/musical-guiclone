@@ -1,5 +1,3 @@
-// const canvas = document.querySelector('canvas');
-// const ctx = canvas.getContext('2d');
 const body = document.getElementById('container');
 
 // function to generate random integer within a range
@@ -123,10 +121,7 @@ class ButtonGrid {
                   centered at the (col, row) of the current button being
                   clicked on;
               b.  then, filter out the current button's tuple
-              c.  and all those which lie off the grid     
-          */
-          
-          // DOUBLE-CHECK that the first part of this logic (preceding 'filter') works correctly!
+              c.  and all those which lie off the grid */
           let neighborIndices = colIndices
             .map(colIdx => rowIndices
                 .map(rowIdx => [colIdx, rowIdx]))
