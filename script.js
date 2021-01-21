@@ -8,14 +8,6 @@ function random(min, max) {
   return num
 }
 
-// // how to define a constructor for button elements
-// // that I can then populate into a grid?
-const rand_x = random(3, 6);
-const rand_y = random(3, 6);
-
-// const rand_x = 2;
-// const rand_y = 3;
-
 // some emojis to play around with?
 const EMOJI_LIST = [
   '📗', '🔒', '🛡️', '🔮', '🗿', '💈', 
@@ -34,6 +26,12 @@ function randomEmoji() {
 class ButtonGrid {
   constructor() {
     this.ui = {};
+    
+    // Upon constructing a new ButtonGrid object, 
+    // random grid width and grid height will be
+    // generated & assigned as object properties
+    this.grid_width = random(4, 6);
+    this.grid_height = random(4, 6);
     this.reset();
   }
     
@@ -44,14 +42,14 @@ class ButtonGrid {
     this.ui.container.innerHTML = '';
     
     // recreate the grid.
-    for (let i=0; i < rand_y; i++) {
+    for (let i=0; i < this.grid_height; i++) {
       // we'll create a 'div' el to serve as a generic 
       // row container
       const rowEl = document.createElement('div');
       rowEl.classList.add('row');
       this.ui.container.appendChild(rowEl);
       // inner for-loop to populate the current row
-      for (let j=0; j < rand_x; j++) {
+      for (let j=0; j < this.grid_width; j++) {
         const button = document.createElement('button');
         // give the button a random emoji for contents?
         let emojiRand = randomEmoji();
@@ -68,26 +66,34 @@ class ButtonGrid {
         // Why doesn't this work if I try to factor out the function
         // and give it a name, as a method of ButtonGrid class?
         button.onclick = function () {
-            // 'Within the function, 'this' will be the object that
-            // 'onclick' was bound to'
-            let buttonRow = this.dataset.row;
-            let buttonCol = this.dataset.col;
+          // 'Within the function, 'this' will be the object that
+          // 'onclick' was bound to'
+          let buttonRow = this.dataset.row;
+          let buttonCol = this.dataset.col;
           
-            // for debugging
-            console.log(buttonCol, buttonRow);
+          // for debugging
+          console.log(buttonCol, buttonRow);
           
-            // I now need to grab the 'innerHTML' of all adjacent button els,
-            // so this will require me to access the parent node & then get 
-            // those of its children nodes which satisfy that condition
+          // I now need to grab the 'innerHTML' of all adjacent button els,
+          // so this will require me to access the parent node & then get 
+          // those of its children nodes which satisfy that condition
           
-            // can I see what element I've clicked on, in JS console?
-            console.log(this);
-            /* Typical output is like e.g.
-            <button class="emojiclick" data-row="2" data-col="2">💙</button>
-            */
+          // can I see what element I've clicked on, in JS console?
+          console.log(this);
+          /* Typical output is like e.g.
+          <button class="emojiclick" data-row="2" data-col="2">💙</button>
+          */
           
-            // get surrounding elements
-            neighbors = 
+          
+          
+          // get surrounding elements
+          let neighbors = this.parentNode.querySelectorAll(
+            // CSS selector string to get all child 'emojiclick'-class
+            // elements having
+            //     buttonRow - 1 <= row attribute <= buttonRow + 1
+            //     buttonCol - 1 <= col attribute <= buttonCol + 1
+            // but not landing outside of the range of the grid size
+            );
           }
         
         // add the current (i'th) button to the current (j'th) list
