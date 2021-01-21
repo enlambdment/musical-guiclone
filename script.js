@@ -2,21 +2,29 @@
 // const ctx = canvas.getContext('2d');
 const body = document.getElementById('container');
 
-// // function to generate random integer within a range
-// function random(min, max) {
-//   const num = Math.floor(Math.random() * (max - min + 1)) + min;
-//   return num
-// }
+// function to generate random integer within a range
+function random(min, max) {
+  const num = Math.floor(Math.random() * (max - min + 1)) + min;
+  return num
+}
 
 // // how to define a constructor for button elements
 // // that I can then populate into a grid?
-// const rand_x = random(3, 6);
-// const rand_y = random(3, 6);
+const rand_x = random(3, 6);
+const rand_y = random(3, 6);
 
-const rand_x = 2;
-const rand_y = 3;
+// const rand_x = 2;
+// const rand_y = 3;
 
 // some emojis to play around with?
+const EMOJI_LIST = [
+  '📗', '🔒', '🛡️', '💊', '🔮', '🗿',
+  '💣', '💈', '💙', '🎴', '📯', ];
+
+function randomEmoji() {
+  let randIdx = random(0, EMOJI_LIST.length - 1);
+  return EMOJI_LIST[randIdx];
+}
 
 /* double loop. Loosely speaking
 (using 'ul' for unordered list won't really do it because
@@ -67,6 +75,10 @@ class ButtonGrid {
       // inner for-loop to populate the current row
       for (let j=0; j < rand_x; j++) {
         const button = document.createElement('button');
+        // give the button a random emoji for contents?
+        let emojiRand = randomEmoji();
+        button.innerHTML = emojiRand;
+        
         // custom attributes for the current button 
         // being worked on
         button.classList.add('pixel');
@@ -82,3 +94,5 @@ class ButtonGrid {
 // we still have to place it somewhere in the 
 // DOM for it to appear on the page
 const myButtonGrid = new ButtonGrid();
+body.appendChild(myButtonGrid);
+
