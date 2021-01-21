@@ -27,33 +27,10 @@ function randomEmoji() {
   return EMOJI_LIST[randIdx];
 }
 
-/* double loop. Loosely speaking
-(using 'ul' for unordered list won't really do it because
-this will be bullet-pointed like a text list)
-1. for each i in range(rand_x), create a column
-2. then, to that i'th col, add for each j in range(rand_y)
-   one button element
+/* JS class for a grid of buttons labelled with 
+   random emojis from a list.
+   The grid dimensions are between 3x3 and 6x6.
 */
-// for (let i = 0; i < rand_x; i++) {
-//   // 'span' is an HTML element type for generic containers
-//   let button_col = document.createElement('span');
-//   // give it a descriptive class
-//   button_col.className = "button_col";
-//   // now, fill it with buttons
-//   for (let j = 0; j < rand_y; j++) {
-//     var button = document.createElement('button');
-//     button_col.appendChild(button);
-//   }
-//   document.body.append(button_col);
-// }
-
-/* 
- So far, each button_col is getting
- populated with buttons - good!
- But, each button_col is getting shown
- horizontally, instead of as a column - bad!
-*/
-
 class ButtonGrid {
   constructor() {
     this.ui = {};
@@ -89,12 +66,6 @@ class ButtonGrid {
       }
     }
   }
-  
-  /* IDEA FOR NEXT TIME:
-  Add some functionality so that, upon the click event
-  firing for a button, it randomly selects one of the 
-  emojis from the surrounding elements & swaps that one in?
-  */
 }
 
 // once we create a ButtonGrid instance,
@@ -103,3 +74,28 @@ class ButtonGrid {
 const myButtonGrid = new ButtonGrid();
 body.appendChild(myButtonGrid);
 
+  /* IDEA FOR NEXT TIME:
+  Add some functionality so that, upon the click event
+  firing for a button, it randomly selects one of the 
+  emojis from the surrounding elements & swaps that one in?
+  
+  When a button is clicked:
+  1. How is the click event registered?
+  2. What is the JS functionality to locate the place that was clicked
+      & the button at that location?
+      
+  The way this seems to work in the coconet source code:
+  * Board() class -
+      has a method 'toggleCell(i, j, voice)' that identifies whether
+      the grid item with data-row='i', data-col='j' actually exists 
+      & is part of the musical GUI.
+      If so, it then sets about modifying the dot.on property, where
+      dot = this.data[i][j].
+  * script.js -
+      the class='container' div el which contains the musical GUI grid
+      is given various event listeners (.addEventListener(..)), among them
+          container.addEventListener('mousedown', (event) => { isMouseDown = true; clickCell(event) });
+          container.addEventListener('mouseup', () => isMouseDown = false);
+      then there is a function 'clickCell(event)' which uses either document.elementFromPoint(..) or
+      event.target to get the button el, and then in turn its dataset attributes 'row' and 'col'.
+  */
