@@ -16,6 +16,8 @@ const body = document.getElementById('container');
 const rand_x = 2;
 const rand_y = 3;
 
+// some emojis to play around with?
+
 /* double loop. Loosely speaking
 (using 'ul' for unordered list won't really do it because
 this will be bullet-pointed like a text list)
@@ -42,3 +44,41 @@ this will be bullet-pointed like a text list)
  But, each button_col is getting shown
  horizontally, instead of as a column - bad!
 */
+
+class ButtonGrid {
+  constructor() {
+    this.ui = {};
+    this.reset();
+  }
+  
+  reset() {
+    // get id='container' el, which here is a 'div' el
+    this.ui.container = document.getElementById('container');
+    // blank out el contents
+    this.ui.container.innerHTML = '';
+    
+    // recreate the grid.
+    for (let i=0; i < rand_y; i++) {
+      // we'll create a 'div' el to serve as a generic 
+      // row container
+      const rowEl = document.createElement('div');
+      rowEl.classList.add('row');
+      this.ui.container.appendChild(rowEl);
+      // inner for-loop to populate the current row
+      for (let j=0; j < rand_x; j++) {
+        const button = document.createElement('button');
+        // custom attributes for the current button 
+        // being worked on
+        button.classList.add('pixel');
+        button.dataset.row = i;
+        button.dataset.col = j;
+        rowEl.appendChild(button);
+      }
+    }
+  }
+}
+
+// once we create a ButtonGrid instance,
+// we still have to place it somewhere in the 
+// DOM for it to appear on the page
+const myButtonGrid = new ButtonGrid();
