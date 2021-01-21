@@ -14,9 +14,16 @@ const EMOJI_LIST = [
   '💙', '🎴', '📯', '🎾', '🎱', '🎲', 
   '🥁', '🦄', '🛎️', '💎', '🏮', '🛢️'];
 
+// Factor out the pattern of random array-element selection;
+// I'll need it later
+function randArrayItem(arr) {
+  let randIdx = random(0, arr.length - 1);
+  return arr[randIdx];
+}
+
 function randomEmoji() {
-  let randIdx = random(0, EMOJI_LIST.length - 1);
-  return EMOJI_LIST[randIdx];
+  let getEmoji = randArrayItem(EMOJI_LIST);
+  return getEmoji;
 }
 
 /* JS class for a grid of buttons labelled with 
@@ -132,19 +139,12 @@ class ButtonGrid {
                       (arr[0] >= 0 && arr[0] <= maxCol) &&
                       // row-part (y-coord) must not lie off the grid
                       (arr[1] >= 0 && arr[1] <= maxRow));
-          
-          // console.log(neighborIndices);
-                    
+                              
           // Get surrounding elements.
           // First get all button elements.
           let allEmojiclicks = containerEl.querySelectorAll('div button');
-
-          console.log(allEmojiclicks);
-          console.log(typeof(allEmojiclicks));
-          
           let arrEmojiclicks = Array.from(allEmojiclicks);
-          console.log(arrEmojiclicks);
-          
+
           // Then, filter down based upon .dataset.row / .dataset.col custom attributes,
           // using neighborIndices that we built above
           let neighbors = arrEmojiclicks
@@ -157,17 +157,16 @@ class ButtonGrid {
             .filter(button => 
                 (neighborIndices.some(arr => 
                     (arr[0] == button.dataset.col && arr[1] == button.dataset.row))));
-          
-          // does this work? If it does, then I should get
-          // neighbors.length == neighborIndices.length
-          console.log(neighbors);
-          console.log(neighbors.length == neighborIndices.length);
-          
+                    
           // The goal of getting these neighbor elements is to 
           // 1. identify the emojis in each of them, then
-          // 2. make an array of these and 
-          // 3. select randomly from the array, subsequently
-          // 4. *re-assigning the current-button innerHTML 
+          let neighborEmojis = neighbors
+            .map(button => button.innerHTML);
+          // 2. select randomly from the array, subsequently
+          let randNeighborEmoji = randArrayItem(neighborEmojis);
+          // 3. *re-assigning the current-button innerHTML to have this
+          //     new emoji* as the main effect of the .onclick function
+          this.innerHTML = randNeighborEmoji;
           }
         
         // add the current (i'th) button to the current (j'th) list
