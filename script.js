@@ -97,10 +97,13 @@ class ButtonGrid {
           <button class="emojiclick" data-row="2" data-col="2">💙</button>
           */
           
-//           // define range in which to get neighbors
-//           // NEED: The top-level ButtonGrid object's grid_width / grid_height attributes
-//           let leftBound = Math.max(0, buttonRow - 1)
-//           let rightBound = Math.min()
+          // Define range in which to get neighbors.
+          // Get the maximum possible col and row indices.
+          let containerEl = this.parentNode.parentNode;
+          let maxRight = containerEl.dataset.gridWidth - 1;
+          let maxBottom = containerEl.datas
+          let leftBound = Math.max(0, buttonRow - 1)
+          let rightBound = Math.min()
           
 //           // get surrounding elements
 //           let neighbors = this.parentNode.querySelectorAll(
