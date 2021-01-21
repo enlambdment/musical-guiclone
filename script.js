@@ -74,7 +74,9 @@ class ButtonGrid {
           // 'onclick' was bound to'.
           
           let buttonRow = parseInt(this.dataset.row);
+          console.log('buttonRow is: ' + buttonRow);
           let buttonCol = parseInt(this.dataset.col);
+          console.log('buttonCol is: ' + buttonCol);
                     
           // Define range in which to get neighbors.
           // Get the maximum possible col and row indices.
@@ -85,16 +87,26 @@ class ButtonGrid {
           console.log(maxRow);
           
           // There's going to be some Array / map / filter stuff going on.
-          let subgridIndices = undefined;
+          let oneDimNeighbors = Array(3).fill(-1).map((x, y) => x + y);
+          let colIndices = oneDimNeighbors.map(idx => buttonCol + idx);
+          let rowIndices = oneDimNeighbors.map(idx => buttonRow + idx);
           
-          /* The better approach is to
+          // This will be an array of 2-item array [colIdx, rowIdx].
+                    /* Approach to get neighbors:
                a. create the 3-x-3 subgrid of locations (index tuples)
                   centered at the (col, row) of the current button being
                   clicked on;
               b.  then, filter out the current button's tuple
-              c.  and all those which lie off the grid
-                
+              c.  and all those which lie off the grid     
           */
+          let subgridIndices = colIndices
+            .map(colIdx => rowIndices
+                .map(rowIdx => [colIdx, rowIdx]))
+                  .reduce((acc, x) => acc.concat(x), []);
+          console.log(subgridIndices);
+                    
+          
+
           
 //           // Get surrounding elements.
 //           // First get all button elements
