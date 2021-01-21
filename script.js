@@ -106,39 +106,31 @@ class ButtonGrid {
                 .map(rowIdx => [colIdx, rowIdx]))
                   .reduce((acc, x) => acc.concat(x), [])
                     .filter(arr =>
-                      // exclude current button being clicked
-                      (arr != [buttonCol, buttonRow]) 
-                      //       &&
-                      // // col-part (x-coord) must not lie off the grid
-                      // ((arr[0] >= 0) && (arr[0] <= maxCol)) &&
-                      // // row-part (y-coord) must not lie off the grid
-                      // ((arr[1] >= 0) && (arr[1] <= maxRow))
-                           )
-          ;
+                      // exclude current button being clicked.
+                      // Array equality in JS is extensional not intensional!
+                      !(arr[0] == buttonCol && arr[1] == buttonRow) &&
+                      // col-part (x-coord) must not lie off the grid
+                      (arr[0] >= 0 && arr[0] <= maxCol) &&
+                      // row-part (y-coord) must not lie off the grid
+                      (arr[1] >= 0 && arr[1] <= maxRow));
           
-          console.log(neighborIndices);
+          // console.log(neighborIndices);
                     
-          
+          // Get surrounding elements.
+          // First get all button elements.
+          let allEmojiclicks = containerEl.querySelectorAll('div button');
 
+          console.log(allEmojiclicks);
+          console.log(typeof(allEmojiclicks));
           
-//           // Get surrounding elements.
-//           // First get all button elements
-//           let allEmojiclicks = containerEl.querySelectorAll('div button');
-
-//           console.log(allEmojiclicks);
-//           console.log(typeof(allEmojiclicks));
+          let arrEmojiclicks = Array.from(allEmojiclicks);
+          console.log(arrEmojiclicks);
           
-//           // From here, restrict to just those having
-//           //     buttonRow - 1 <= row attribute <= buttonRow + 1
-//           //     buttonCol - 1 <= col attribute <= buttonCol + 1
-//           // but not landing outside of the range of the grid size
-//           let arrEmojiclicks = Array.from(allEmojiclicks);
-//           console.log(arrEmojiclicks);
-//           let neighbors = arrEmojiclicks
-//             .filter(button => 
-//                 buttonRow in [topBound, bottomBound] &&
-//                 buttonCol in [leftBound, rightBound]);
-//           console.log(neighbors);
+          // Then, filter down based upon .dataset.row / .dataset.col custom attributes,
+          // using neighborIndices that we built above
+          let neighbors = arrEmojiclicks
+            .filter(button => 
+                (button.dataset.)
           }
         
         // add the current (i'th) button to the current (j'th) list
