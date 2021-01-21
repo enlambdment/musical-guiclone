@@ -1,6 +1,6 @@
 /* CSS files add styling rules to your content */
 html {
-  size: 25px;
+  size: 50px;
 }
 
 body {
@@ -17,7 +17,8 @@ div {
   display: block;
 }
 
-.button_col {
-  height: var(--size);
-  width: var(--size);
+/* how can I change the size of a button? */
+button {
+  height: 250px;
+  width: 250px;
 }

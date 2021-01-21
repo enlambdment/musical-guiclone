@@ -19,7 +19,8 @@ const rand_y = random(3, 6);
 // some emojis to play around with?
 const EMOJI_LIST = [
   '📗', '🔒', '🛡️', '💊', '🔮', '🗿',
-  '💣', '💈', '💙', '🎴', '📯', ];
+  '💣', '💈', '💙', '🎴', '📯', '🎾',
+  '🎱', '🎯', '🎲', '🥁', '🔥', '🦄'];
 
 function randomEmoji() {
   let randIdx = random(0, EMOJI_LIST.length - 1);
@@ -81,13 +82,19 @@ class ButtonGrid {
         
         // custom attributes for the current button 
         // being worked on
-        button.classList.add('pixel');
+        button.classList.add('emojiclick');
         button.dataset.row = i;
         button.dataset.col = j;
         rowEl.appendChild(button);
       }
     }
   }
+  
+  /* IDEA FOR NEXT TIME:
+  Add some functionality so that, upon the click event
+  firing for a button, it randomly selects one of the 
+  emojis from the surrounding elements & swaps that one in?
+  */
 }
 
 // once we create a ButtonGrid instance,
