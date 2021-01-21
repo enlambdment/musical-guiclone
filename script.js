@@ -82,9 +82,9 @@ class ButtonGrid {
           // Get the maximum possible col and row indices.
           let containerEl = this.parentNode.parentNode;
           let maxCol = parseInt(containerEl.dataset.gridWidth) - 1;
-          console.log(maxCol);
+          console.log('maxCol is: ' + maxCol);
           let maxRow = parseInt(containerEl.dataset.gridHeight) - 1;
-          console.log(maxRow);
+          console.log('maxRow is: ' + maxRow);
           
           // There's going to be some Array / map / filter stuff going on.
           let oneDimNeighbors = Array(3).fill(-1).map((x, y) => x + y);
@@ -92,18 +92,25 @@ class ButtonGrid {
           let rowIndices = oneDimNeighbors.map(idx => buttonRow + idx);
           
           // This will be an array of 2-item array [colIdx, rowIdx].
-                    /* Approach to get neighbors:
+          /* Approach to get neighbors:
                a. create the 3-x-3 subgrid of locations (index tuples)
                   centered at the (col, row) of the current button being
                   clicked on;
               b.  then, filter out the current button's tuple
               c.  and all those which lie off the grid     
           */
-          let subgridIndices = colIndices
+          let neighborIndices = colIndices
             .map(colIdx => rowIndices
                 .map(rowIdx => [colIdx, rowIdx]))
-                  .reduce((acc, x) => acc.concat(x), []);
-          console.log(subgridIndices);
+                  .reduce((acc, x) => acc.concat(x), [])
+                    .filter(arr =>
+                      // exclude current button being clicked
+                      (arr !== [buttonCol, buttonRow]) &&
+                      // col-part (x-coord) must not lie off the grid
+                      ((arr[0] >= 0) && (arr[0] <= maxCol)) &&
+                      // row-part (y-coord) must not lie off the grid
+                      ((arr[1] >= 0) && (arr[1] <= maxRow)));
+          console.log(neighborIndices);
                     
           
 
