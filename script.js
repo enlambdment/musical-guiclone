@@ -1,5 +1,3 @@
-const body = document.getElementById('container');
-
 // function to generate random integer within a range
 function random(min, max) {
   const num = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -177,6 +175,14 @@ class ButtonGrid {
 // we still have to place it somewhere in the 
 // DOM for it to appear on the page
 const myButtonGrid = new ButtonGrid();
+
+// Set up touch events.
+// The row-class divs of buttons were laid out within
+// the container-class div that ButtonGrid() inserts in
+// the DOM upon being called. 
+const body = document.getElementById('container');
+
+
 
 /* The below is unnecessary!
     Reason: Upon creating a new ButtonGrid instance, the new object's
