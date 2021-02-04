@@ -17,11 +17,19 @@ div {
   display: block;
 }
 
+/*
+ The font does not have equally wide characters,
+ so unless I specify otherwise, the buttons do not 
+ line up on an evenly spaced grid.
+ How to fix this? (w/o changing font)
+*/
 button {
   font-size: 100%;
-/*   display: inline-block;
-  vertical-align: middle;
-  cursor: pointer;
+  border: 0;
+  background: blue;
+  margin: 0.125rem;
   
-  color: hotpink; */
+  /* This refers to the *text* color
+     of any strings contained in the button-el. */
+  color: yellow;
 }
