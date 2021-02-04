@@ -1,6 +1,9 @@
-const GRID_HEIGHT = 15;
+// we will span 3 octaves in the grid exposed
+const GRID_HEIGHT = 36;
 // models 6 measures, each having 4 quarter-note beats
 const GRID_WIDTH = 24; 
+// highest possible pitch
+const MAX_PITCH = 81;
 
 // // function to generate random integer within a range
 function random(min, max) {
@@ -58,7 +61,21 @@ class ButtonGrid {
   3. The following child elements are then the buttons constituting the GUI grid proper.
      Each of these has the following features:
      3a. button element
-     3b. 
+     3b. aria-label is set to "cell, {empty | soprano | alto | tenor | bass}" -
+         the 2nd value in the attribute list is 'empty' to start with, but changes
+         based upon whatever the user selects for the current voice to paint in
+         when they click GUI squares.
+         ('aria-label' is like 'title' but supports richer functionality for
+          assistive technologies which enhance user accessibility.)
+     3c. class is set to "pixel, {voice | voice0 | voice1 | voice2 | voice3}" -
+         this is effectively a re-labelling of the same possible attribute values
+         as are indicated in aria-label, but these names are the ones which 
+         the CSS selectors refer to (vs. those in the aria-label which are chosen
+         to have natural-language significance for musical persons)
+     3d. finally, data-row, data-col and data-pitch are set to match the current
+         i value for the outer (per-row) loop, the current j value for the inner 
+         (per-col) loop, and the same data-pitch as was derived previously for the
+         row, respectively.
   */
   reset() {
     // get id='container' el, which here is a 'div' el
