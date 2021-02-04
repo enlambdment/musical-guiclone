@@ -11,6 +11,18 @@ const MAX_PITCH = 67;
 */
 class ButtonGrid {
   constructor() {
+    
+    // Going forward, we want to have an property 
+    // which we will populate with empty JS objects ({}'s)
+    // for each button.
+    // We will keep track of updates to the musical "score"
+    // being built up by clicks / model infilling by means 
+    // of updates to the {}'s at the appropriate indices of
+    // this.data, which will become a 2D array.
+    // As well, we will eventually marshall into / unmarshall from
+    // intermediate "hash strings" that will serve as a format for
+    // the model / synth to use, in infilling / sound generation resp.
+    this.data = [];
     this.ui = {};
     
     // Upon constructing a new ButtonGrid object, 
