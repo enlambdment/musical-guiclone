@@ -182,37 +182,3 @@ const myButtonGrid = new ButtonGrid();
 // the DOM upon being called. 
 const body = document.getElementById('container');
 
-
-
-/* The below is unnecessary!
-    Reason: Upon creating a new ButtonGrid instance, the new object's
-    own 'reset()' method is called, which in turn takes care of creating 
-    each row, in turn, and populating it with button el's.
-*/
-// body.appendChild(myButtonGrid);
-
-  /* IDEA FOR NEXT TIME:
-  Add some functionality so that, upon the click event
-  firing for a button, it randomly selects one of the 
-  emojis from the surrounding elements & swaps that one in?
-  
-  When a button is clicked:
-  1. How is the click event registered?
-  2. What is the JS functionality to locate the place that was clicked
-      & the button at that location?
-      
-  The way this seems to work in the coconet source code:
-  * Board() class -
-      has a method 'toggleCell(i, j, voice)' that identifies whether
-      the grid item with data-row='i', data-col='j' actually exists 
-      & is part of the musical GUI.
-      If so, it then sets about modifying the dot.on property, where
-      dot = this.data[i][j].
-  * script.js -
-      the class='container' div el which contains the musical GUI grid
-      is given various event listeners (.addEventListener(..)), among them
-          container.addEventListener('mousedown', (event) => { isMouseDown = true; clickCell(event) });
-          container.addEventListener('mouseup', () => isMouseDown = false);
-      then there is a function 'clickCell(event)' which uses either document.elementFromPoint(..) or
-      event.target to get the button el, and then in turn its dataset attributes 'row' and 'col'.
-  */
