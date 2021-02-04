@@ -132,7 +132,14 @@ class ButtonGrid {
                 
         // add the current (j'th) button to the current (i'th) list
         rowEl.appendChild(button);
-      } 
+      }
+      
+      // There is an additional per-row process in the 
+      // coconet GUI creation which checks, for each pitch-range
+      // specified in a 2D array RANGES, whether the current row
+      // falls within that range, and appends a generic span
+      // color-coded to indicate the separate SATB ranges.
+      // I will omit this for now.
     } 
   } 
 } 
