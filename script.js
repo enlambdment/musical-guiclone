@@ -110,19 +110,27 @@ class ButtonGrid {
       
       // inner for-loop to populate the current row
       for (let j = 0; j < this.grid_width; j++) {
+        // JS data-structure reflection of the DOM musical state
+        this.data[i][j] = {};
+        
         const button = document.createElement('button');
+        
+        // The 2nd part of 'aria-label' attribute will evolve
+        // as it is selected, depending on what voice the parent
+        // row pitch falls in.
         button.setAttribute('aria-label', 'cell, empty');
         
         // In the coconet GUI I am working backwards from,
         // '.pixel' class selector (and not 'button' 
         // element-type selector) is used to give CSS styling
-        // to the musical GUI buttons
+        // to the musical GUI buttons.
+        // 
         button.classList.add('pixel');
         button.dataset.row = i;
         button.dataset.col = j;
         button.dataset.pitch = pitch;
                 
-        // add the current (i'th) button to the current (j'th) list
+        // add the current (j'th) button to the current (i'th) list
         rowEl.appendChild(button);
       } 
     } 
