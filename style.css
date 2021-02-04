@@ -23,11 +23,15 @@ div {
  line up on an evenly spaced grid.
  How to fix this? (w/o changing font)
 */
+
+
 button {
   font-size: 100%;
   border: 0;
   background: blue;
-  margin: 0.125rem;
+  margin: 0.5px;
+/*   text-align: justify; */
+/*   display: flex; */
   
   /* This refers to the *text* color
      of any strings contained in the button-el. */

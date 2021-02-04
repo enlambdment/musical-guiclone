@@ -1,3 +1,7 @@
+const GRID_HEIGHT = 15;
+// models 6 measures, each having 4 quarter-note beats
+const GRID_WIDTH = 24; 
+
 // // function to generate random integer within a range
 function random(min, max) {
   const num = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -10,7 +14,7 @@ function random(min, max) {
 //   '💙', '🎴', '📯', '🎾', '🎱', '🎲', 
 //   '🥁', '🦄', '🛎️', '💎', '🏮', '🛢️'];
 const EMOJI_LIST = [
-  'a', 'b', 'c', 'd', 'e']
+  '']
 
 // // Factor out the pattern of random array-element selection;
 // // I'll need it later
@@ -33,13 +37,29 @@ class ButtonGrid {
     this.ui = {};
     
     // Upon constructing a new ButtonGrid object, 
-    // random grid width and grid height will be
-    // generated & assigned as object properties
-    this.grid_width = random(4, 6);
-    this.grid_height = random(4, 6);
+    // width and height (each measured in number of button squares)
+    // are assigned using global const's
+    this.grid_width = GRID_WIDTH;
+    this.grid_height = GRID_HEIGHT
     this.reset();
   }
-    
+  
+  /*
+  GOAL: Refine the simplified model of an interactive grid of buttons,
+  by implementing more of the coconet GUI model.
+  The following features are relevant:
+  1. Each row of buttons is represented by a div-el, class="row".
+     The JS dataset.<attr-name> is used to set a custom element property
+     of 'data-pitch', and as i ranges from 0 (top row) to GRID_HEIGHT-1 (bottom row),
+     this is assigned to decreasing pitch values by using: MAX_PITCH - i
+  2. The first child element of each row-div is a generic span element
+     whose main purpose is to contain the data-pitch for the current row,
+     as a visual reminder.
+  3. The following child elements are then the buttons constituting the GUI grid proper.
+     Each of these has the following features:
+     3a. button element
+     3b. 
+  */
   reset() {
     // get id='container' el, which here is a 'div' el
     this.ui.container = document.getElementById('container');
@@ -60,9 +80,6 @@ class ButtonGrid {
       // inner for-loop to populate the current row
       for (let j=0; j < this.grid_width; j++) {
         const button = document.createElement('button');
-        // give the button a random emoji for contents?
-        let emojiRand = randomEmoji();
-        button.innerHTML = emojiRand;
         
         // custom attributes for the current button 
         // being worked on
