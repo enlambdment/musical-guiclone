@@ -141,7 +141,10 @@ class ButtonGrid {
       // color-coded to indicate the separate SATB ranges.
       // I will omit this for now.
     } 
-  } 
+  // Following the set-up for the GUI grid, we will create
+  // an additional this.ui property to contain all the rows in DOM
+  this.ui.rows = document.querySelectorAll('.container > .row');
+  }
 } 
 
 // once we create a ButtonGrid instance,
