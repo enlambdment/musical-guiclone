@@ -3,33 +3,7 @@ const GRID_HEIGHT = 36;
 // models 6 measures, each having 4 quarter-note beats
 const GRID_WIDTH = 24; 
 // highest possible pitch
-const MAX_PITCH = 81;
-
-// // function to generate random integer within a range
-function random(min, max) {
-  const num = Math.floor(Math.random() * (max - min + 1)) + min;
-  return num
-}
-
-// some emojis to play around with?
-// const EMOJI_LIST = [
-//   '📗', '🔒', '🛡️', '🔮', '🗿', '💈', 
-//   '💙', '🎴', '📯', '🎾', '🎱', '🎲', 
-//   '🥁', '🦄', '🛎️', '💎', '🏮', '🛢️'];
-const EMOJI_LIST = [
-  '']
-
-// // Factor out the pattern of random array-element selection;
-// // I'll need it later
-function randArrayItem(arr) {
-  let randIdx = random(0, arr.length - 1);
-  return arr[randIdx];
-}
-
-function randomEmoji() {
-  let getEmoji = randArrayItem(EMOJI_LIST);
-  return getEmoji;
-}
+const MAX_PITCH = 67;
 
 /* JS class for a grid of buttons labelled with 
    random emojis from a list.
@@ -93,7 +67,26 @@ class ButtonGrid {
       // row container
       const rowEl = document.createElement('div');
       rowEl.classList.add('row');
+      
+      // set 'dataset' custom attr to store pitch per row.
+      // The pitch per row will decrease as we go from 
+      // higher up (lower i) to lower down (greater i) rows
+      const pitch = MAX_PITCH - i;
+      rowEl.dataset.pitch = pitch;
+      
       this.ui.container.appendChild(rowEl);
+      
+      // initial element populating the current row is a 
+      // generic span-el to carry a label with the row pitch
+      const spanEl = document.createElement('span');
+      
+      // We can use 'setAttribute' to set element attr's generically
+      spanEl.setAttribute('class', 'piano-key off');
+      spanEl.textContent(pitch);
+      
+      // add the label span-el to start out the row
+      rowEl.appendChild(spanEl);
+      
       // inner for-loop to populate the current row
       for (let j=0; j < this.grid_width; j++) {
         const button = document.createElement('button');
