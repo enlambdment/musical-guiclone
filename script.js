@@ -218,7 +218,27 @@ class ButtonGrid {
         }
       }
     }
-    
+    // This puts the current contents of the GUI 
+    // into the window URL, in serialized form.
+    // It is preceded by a #-symbol.
+    window.location.hash = s.substring(0, s.length-1);
+  }
+  
+  // Accepts a serialized board state and produces from it
+  // a NoteSequence which Magenta.js will be able to work with
+  // for audio synthesis / manipulation with music models
+  loadHash(s) {
+    const steps = s.split(',');
+    const notes = [];
+    for (let i = 0; i < steps.length; i++) {
+      const pair = steps[i].split(':');
+      // add an entry to the NoteSequence being built
+      notes.push(
+        {pitch: parseInt(pair[0]),
+        // no 'instrument' applicable bc. no voice part 
+         quantizedStartStep: parseInt(pair[1]),
+         quantizedEndStep: parseInt(pair[1]) + 1});
+    }
   }
 } 
 
