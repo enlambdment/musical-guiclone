@@ -133,7 +133,10 @@ class ButtonGrid {
         // to the musical GUI buttons.
         // So I will do that also.
         // Instead of 5 different classes that a GUI-grid
-        // button can belong to ()
+        // button can belong to (empty + 1 for each voice range),
+        // there will be just 2 ('pixel' | 'pixel voice').
+        // Also note that unlike aria-label, separate parts 
+        // of the class list are spaced apart, not ,-delim.
         button.classList.add('pixel');
         button.dataset.row = i;
         button.dataset.col = j;
