@@ -198,7 +198,28 @@ class ButtonGrid {
     this.updateButton(uiButton, dot.on);
   }
   
-
+  // Serializes the current state of the board into a 
+  // string, for loading & using elsewhere e.g. synthesizing
+  // into audio signal, infilling via pre-trained model.
+  // (I *think* that is the purpose which the hash serves, but
+  // I have yet to locate the code where this happens.)
+  updateHash() {
+    let s = '';
+    // iterate over rows
+    for (let i = 0; i < GRID_HEIGHT; i++) {
+      // iterate over cols
+      for (let j = 0; j < GRID_WIDTH; j++) {
+        if (this.data[i][j] === 1) {
+          // Again, because I am not using any concept of separate
+          // voices / vocal ranges, the format of the hash substring
+          // for one activated cell in the GUI should be just 2 
+          // :-delimited entries, not 3.
+          s += `${MAX_PITCH-i}:${j},`;
+        }
+      }
+    }
+    
+  }
 } 
 
 // once we create a ButtonGrid instance,
