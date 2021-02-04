@@ -123,15 +123,17 @@ class ButtonGrid {
         const button = document.createElement('button');
         
         // The 2nd part of 'aria-label' attribute will evolve
-        // as it is selected, depending on what voice the parent
-        // row pitch falls in.
-        button.setAttribute('aria-label', 'cell, empty');
+        // as it is selected, depending on whether the cell
+        // is off (default state upon initialization) or on.
+        button.setAttribute('aria-label', 'cell, off');
         
         // In the coconet GUI I am working backwards from,
         // '.pixel' class selector (and not 'button' 
         // element-type selector) is used to give CSS styling
         // to the musical GUI buttons.
-        // 
+        // So I will do that also.
+        // Instead of 5 different classes that a GUI-grid
+        // button can belong to ()
         button.classList.add('pixel');
         button.dataset.row = i;
         button.dataset.col = j;
@@ -232,13 +234,23 @@ class ButtonGrid {
     const notes = [];
     for (let i = 0; i < steps.length; i++) {
       const pair = steps[i].split(':');
-      // add an entry to the NoteSequence being built
+      // build up the 'notes' value for the
+      // NoteSequence that we will build
       notes.push(
         {pitch: parseInt(pair[0]),
         // no 'instrument' applicable bc. no voice part 
          quantizedStartStep: parseInt(pair[1]),
          quantizedEndStep: parseInt(pair[1]) + 1});
     }
+    // now a NoteSequence is built for Magenta.js to use
+    const ns = {};
+    ns.notes = notes;
+    ns.quantizationInfo = {'stepsPerQuarter':4};
+    ns.totalQuantizedSteps = GRID_WIDTH;
+    
+    // Omit until I know what this does, or why
+    // it calls 'updateHash'
+    // this.drawNoteSequence(ns); // <- ? 
   }
 } 
 
