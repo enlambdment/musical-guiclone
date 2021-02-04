@@ -74,7 +74,12 @@ class ButtonGrid {
     this.ui.container.dataset.gridHeight = this.grid_height;
     
     // recreate the grid.
-    for (let i=0; i < this.grid_height; i++) {
+    for (let i = 0; i < this.grid_height; i++) {
+      // update this.data property to track, in JS data structure,
+      // parallel information to the state changes that will apply 
+      // in HTML DOM
+      this.data.push([]); // <- representing the current DOM row
+      
       // we'll create a 'div' el to serve as a generic 
       // row container
       const rowEl = document.createElement('div');
@@ -88,8 +93,12 @@ class ButtonGrid {
       
       this.ui.container.appendChild(rowEl);
       
-      // initial element populating the current row is a 
-      // generic span-el to carry a label with the row pitch
+      /* Initial element populating the current row is a 
+         generic span-el to carry a label with the row pitch.
+         I am choosing to handle this differently vs. in the 
+         coconet GUI, where the inner loop handles both the 
+         span-el creation & the buttons creation for the grid proper.
+      */
       const spanEl = document.createElement('span');
       
       // We can use 'setAttribute' to set element attr's generically
@@ -100,14 +109,18 @@ class ButtonGrid {
       rowEl.appendChild(spanEl);
       
       // inner for-loop to populate the current row
-      for (let j=0; j < this.grid_width; j++) {
+      for (let j = 0; j < this.grid_width; j++) {
         const button = document.createElement('button');
+        button.setAttribute('aria-label', 'cell, empty');
         
-        // custom attributes for the current button 
-        // being worked on
-        button.classList.add('emojiclick');
+        // In the coconet GUI I am working backwards from,
+        // '.pixel' class selector (and not 'button' 
+        // element-type selector) is used to give CSS styling
+        // to the musical GUI buttons
+        button.classList.add('pixel');
         button.dataset.row = i;
         button.dataset.col = j;
+        button.dataset.pitch = pitch;
                 
         // add the current (i'th) button to the current (j'th) list
         rowEl.appendChild(button);
