@@ -69,28 +69,7 @@ class ButtonGrid {
         button.dataset.col = j;
         
         
-        /* TODO TODO TODO TODO TODO TODO TODO TODO 
-        
-          Having this big anonymous function provided directly to every
-          button, in the 'button.onclick = function () { ... }' statement
-          below, feels unfortunate because such a big piece of functionality
-          should really (maybe?) be brought 'higher-level', possibly even as 
-          a ButtonGrid method (?)
-          
-          In that way, the ButtonGrid method to perform this logic would 
-          accept explicit parameters for row & col position of a button, and
-          meanwhile some event-handler in the main (not the ButtonGrid class) code
-          would take care of handling mouse-click events by identifying the button
-          clicked on, getting those parameters & passing them to this method.
-          
-          So, refactor this once I get the chance!
-        
-           TODO TODO TODO TODO TODO TODO TODO TODO */
-        
-        // give every button a function reference saying to do a specific
-        // thing once the button is clicked.
-        // Why doesn't this work if I try to factor out the function
-        // and give it a name, as a method of ButtonGrid class?
+       
         button.onclick = function () {
           // 'Within the function, 'this' will be the object that
           // 'onclick' was bound to'.
