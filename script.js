@@ -4,11 +4,13 @@ function random(min, max) {
   return num
 }
 
-// // some emojis to play around with?
+// some emojis to play around with?
 // const EMOJI_LIST = [
 //   '📗', '🔒', '🛡️', '🔮', '🗿', '💈', 
 //   '💙', '🎴', '📯', '🎾', '🎱', '🎲', 
 //   '🥁', '🦄', '🛎️', '💎', '🏮', '🛢️'];
+const EMOJI_LIST = [
+  'a', 'b', 'c', 'd', 'e']
 
 // // Factor out the pattern of random array-element selection;
 // // I'll need it later
@@ -17,10 +19,10 @@ function randArrayItem(arr) {
   return arr[randIdx];
 }
 
-// function randomEmoji() {
-//   let getEmoji = randArrayItem(EMOJI_LIST);
-//   return getEmoji;
-// }
+function randomEmoji() {
+  let getEmoji = randArrayItem(EMOJI_LIST);
+  return getEmoji;
+}
 
 /* JS class for a grid of buttons labelled with 
    random emojis from a list.
@@ -59,8 +61,8 @@ class ButtonGrid {
       for (let j=0; j < this.grid_width; j++) {
         const button = document.createElement('button');
         // give the button a random emoji for contents?
-        // let emojiRand = randomEmoji();
-        // button.innerHTML = emojiRand;
+        let emojiRand = randomEmoji();
+        button.innerHTML = emojiRand;
         
         // custom attributes for the current button 
         // being worked on

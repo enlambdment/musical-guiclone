@@ -18,13 +18,10 @@ div {
 }
 
 button {
-  display: inline-block;
+  font-size: 100%;
+/*   display: inline-block;
   vertical-align: middle;
-/*   cursor: pointer; */
+  cursor: pointer;
   
-  /* This controls how tall the buttons will appear.
-      What does 'inherit' value do? */
-  line-height: 2.5;
-  
-  color: hotpink;
+  color: hotpink; */
 }
