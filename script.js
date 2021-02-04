@@ -110,8 +110,15 @@ class ButtonGrid {
       
       // inner for-loop to populate the current row
       for (let j = 0; j < this.grid_width; j++) {
-        // JS data-structure reflection of the DOM musical state
+        // JS data-structure reflection of the DOM musical state.
+        // In the simplified model that I am adopting, there are 
+        // no distinctions for musical voices , and no masking / 
+        // erasing. 
+        // So, a .pixel's reflection in JS structure will only 
+        // ever have one of two states: off (0) or on (1).
+        // Upon creation, .on will be set to 0.
         this.data[i][j] = {};
+        this.data[i][j].on = 0;
         
         const button = document.createElement('button');
         
@@ -145,6 +152,36 @@ class ButtonGrid {
   // an additional this.ui property to contain all the rows in DOM
   this.ui.rows = document.querySelectorAll('.container > .row');
   }
+  
+  // Toggles a particular dot from on to off.
+  // In coconet GUI implementation, there is a 3rd parameter
+  // which can denote either erasing, masking, or the voice
+  // that the user has selected to paint a square inside of.
+  // Instead, I will simplify & make this a method which just
+  // toggles a square's current state to the opposite of what
+  // it currently is.
+  toggleCell(i, j) {
+    // Search for a .pixel element at (i,j)-th location
+    const uiButton = document.querySelector(
+      `.pixel[data-row="${i}"][data-col="${j}"]`);
+    if (!uiButton) {
+      return;
+    }
+    
+    // Because we are *not* distinguishing between voices / vocal
+    // ranges, we do not need to know the pitch of the square we are
+    // updating state for. Just need to toggle the appropriate state.
+    const dot = this.data[i][j];
+
+    // Besides flipping the value of 'dot', there are 2 other things
+    // we have to take care of:
+    /* 1. calling updateHash() method, to update the hash string
+          serializing the musical material due to current board state
+    
+    */
+  }
+  
+
 } 
 
 // once we create a ButtonGrid instance,
