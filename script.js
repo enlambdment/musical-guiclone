@@ -170,15 +170,32 @@ class ButtonGrid {
     
     // Because we are *not* distinguishing between voices / vocal
     // ranges, we do not need to know the pitch of the square we are
-    // updating state for. Just need to toggle the appropriate state.
+    // updating state for. Just need to toggle the appropriate state,
+    // changing it into its opposite.
     const dot = this.data[i][j];
+    if (dot === 1) {
+      dot.on = 0;
+    } else {
+      dot.on = 1;
+    }
 
     // Besides flipping the value of 'dot', there are 2 other things
     // we have to take care of:
     /* 1. calling updateHash() method, to update the hash string
           serializing the musical material due to current board state
-    
+          so that addition / removal of musical notes is reflected
+       2. calling resetButton() / maskButton() / voiceButton() method, 
+          so that the attributes of the DOM element can be updated, 
+          and the visual appearance of the grid in turn change to reflect
+          this (by different CSS rules being applied to the element.)
+          In this simplified context, there is no such thing as masking,
+          and separate voices do not come into play, so the logic within
+          the resetButton() / voiceButton() implementations can be 
+          radically simplified or even collapsed into one function,
+          which is what I will attempt to do.
     */
+    this.updateHash();
+    this.updateButton(uiButton, dot.on);
   }
   
 
