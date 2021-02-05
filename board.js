@@ -253,6 +253,36 @@ class ButtonGrid {
     // it calls 'updateHash'
     // this.drawNoteSequence(ns); // <- ? 
   }
+  
+  // Obtain NoteSequence from the JS ButtonGrid object's data.
+  getNoteSequence() { 
+    const sequence = {
+      notes: [], 
+      quantizationInfo: {stepsPerQuarter: 4}};
+    // loop over rows
+    for (let i = 0; i < GRID_HEIGHT; i++) {
+      const row = document.querySelector(
+        `.row[data-pitch="$MAX_PITCH - i]"`);
+      // loop over cols
+      for (let j = 0; j < GRID_WIDTH; j++) {
+        // add to sequence.notes, if note at this
+        // pitch / time is on
+        if (this.data[i][j].on > 0) {
+          sequence.notes.push(
+            { pitch: MAX_PITCH - i,
+              quantizedStartStep: j,
+              quantizedEndStep: j + 1
+            });
+        }
+      }
+    }
+    if (sequence.notes.length !== 0) {
+      sequence.totalQuantizedSteps = GRID_WIDTH;
+    }
+    
+    // this.updateHash() ?
+    return sequence;
+  }
 } 
 
 
