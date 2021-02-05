@@ -124,18 +124,7 @@ class ButtonGrid {
         // as it is selected, depending on whether the cell
         // is off (default state upon initialization) or on.
         button.setAttribute('aria-label', 'cell, off');
-        
-        // In the coconet GUI I am working backwards from,
-        // '.pixel' class selector (and not 'button' 
-        // element-type selector) is used to give CSS styling
-        // to the musical GUI buttons.
-        // So I will do that also.
-        // Instead of 5 different classes that a GUI-grid
-        // button can belong to (empty + 1 for each voice range),
-        // there will be just 2 ('pixel' | 'pixel voice').
-        // Also note that unlike aria-label, separate parts 
-        // of the class list are spaced apart, not ,-delim.
-        button.classList.add('pixel');
+        button.setAttribute('class', 'pixel');
         button.dataset.row = i;
         button.dataset.col = j;
         button.dataset.pitch = pitch;
@@ -218,6 +207,18 @@ class ButtonGrid {
     // into the window URL, in serialized form.
     // It is preceded by a #-symbol.
     window.location.hash = s.substring(0, s.length-1);
+  }
+  
+  // Modify the DOM node for the UI button (1st param)
+  // in accordance with the current state (2nd param)
+  updateButton(btn, btnState) {
+    if (btnState === 1) {
+      btn.setAttribute('class', 'pixel voice');
+      btn.setAttribute('aria-label', 'cell, on')
+    } else {
+      btn.setAttribute('class', 'pixel');
+      btn.setAttribute('aria-label', 'cell, off');
+    }
   }
   
   // Accepts a serialized board state and produces from it
