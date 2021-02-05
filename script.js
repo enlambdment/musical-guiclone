@@ -9,6 +9,9 @@ let player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/
 */
 let playerHardStop = false;
 
+/*  GOAL FOR TOMORROW:
+    Figure out how to set up the SoundFontPlayer instance correctly!
+*/
 player.callbackObject = {
   run: (note) => buttonGrid.playStep(note),
   stop: () => {
