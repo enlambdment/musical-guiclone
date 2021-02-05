@@ -9,22 +9,24 @@ let player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/
 */
 let playerHardStop = false;
 
-/*  GOAL FOR TOMORROW:
-    Figure out how to set up the SoundFontPlayer instance correctly!
-*/
-player.callbackObject = {
-  run: (note) => buttonGrid.playStep(note),
-  stop: () => {
-    if (playerHardStop) {
-      stop();
-    } else {
-      play();
-    }
-  }
-} 
+// ?
+document.querySelector('.start-btn').addEventListener('click', async () => {
+  await player.start()
+  console.log('audio is ready')
+})
 
 /* Create a grid of buttons: this is the musical GUI */
 const buttonGrid = new ButtonGrid();
+
+// Load sound fonts.
+// (Will global variables from board.js be in scope here?)
+const allNotes = [];
+for (let i = 0; i < buttonGrid.grid_height; i++) {
+  allNotes.push({pitch: MAX_PITCH - i, velocity: 80});
+}
+player.loadSamples({notes: allNotes});
+
+
 
 /* To introduce the main interactivity with the musical
    GUI grid, we will need to:

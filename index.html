@@ -8,7 +8,18 @@
   
   <body>
     <h1>some buttons</h1>
-<!--     <canvas></canvas> -->
+
+    <!-- I think we need a start button that the user can
+         press in order to begin.
+         We will equip this button with an event listener 
+         which, upon click, calls Tone.start().
+         This will return a promise which must be resolved 
+         in order for an AudioContext to run, and the audio
+         synthesis to work. -->
+    <button class="start-btn">
+      Start!
+    </button>
+    
     <div class="container" id="container">
       <!-- try putting some buttons in here -->
     </div>
