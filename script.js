@@ -29,7 +29,7 @@ class ButtonGrid {
     // width and height (each measured in number of button squares)
     // are assigned using global const's
     this.grid_width = GRID_WIDTH;
-    this.grid_height = GRID_HEIGHT
+    this.grid_height = GRID_HEIGHT;
     this.reset();
   }
   
@@ -64,9 +64,7 @@ class ButtonGrid {
          row, respectively.
   */
   reset() {
-    // get id='container' el, which here is a 'div' el
     this.ui.container = document.getElementById('container');
-    // blank out el contents
     this.ui.container.innerHTML = '';
     // Assigning grid dimensions using 'dataset' custom attr's
     // so we can use them later on
@@ -102,8 +100,8 @@ class ButtonGrid {
       const spanEl = document.createElement('span');
       
       // We can use 'setAttribute' to set element attr's generically
-      spanEl.setAttribute('class', 'piano-key off');
-      spanEl.textContent(pitch);
+      spanEl.setAttribute('class', 'piano-key');
+      spanEl.textContent = pitch;
       
       // add the label span-el to start out the row
       rowEl.appendChild(spanEl);
@@ -145,13 +143,6 @@ class ButtonGrid {
         // add the current (j'th) button to the current (i'th) list
         rowEl.appendChild(button);
       }
-      
-      // There is an additional per-row process in the 
-      // coconet GUI creation which checks, for each pitch-range
-      // specified in a 2D array RANGES, whether the current row
-      // falls within that range, and appends a generic span
-      // color-coded to indicate the separate SATB ranges.
-      // I will omit this for now.
     } 
   // Following the set-up for the GUI grid, we will create
   // an additional this.ui property to contain all the rows in DOM
