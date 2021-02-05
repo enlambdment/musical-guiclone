@@ -36,3 +36,29 @@ button {
      of any strings contained in the button-el. */
   color: yellow;
 }
+
+/* Since this is more specific
+   than 'button' selector, this should
+   take precedence even if it doesn't 
+   get listed later in the stylesheet */
+.pixel {
+  display: inline-block;
+  visibility: visible;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  appearance: none;
+  
+  /* The following properties use 
+     'inherit', which means that the 
+     computed value of the parent element 
+     is used for these. 
+  
+  (Since these pixel-class elements are 
+  children of a row-class div element, look
+  for these attributes' values there.)
+  */
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+}
