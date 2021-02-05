@@ -231,7 +231,12 @@ class ButtonGrid {
   
   // Accepts a serialized board state and produces from it
   // a NoteSequence which Magenta.js will be able to work with
-  // for audio synthesis / manipulation with music models
+  // for audio synthesis / manipulation with music models.
+  /* (I think the idea here is to receive, as a result of 
+      some pre-trained model's generation, a revised score
+      serialization that then has to be fed back into the
+      DOM grid and the JS this.data, updating both.)
+  */
   loadHash(s) {
     const steps = s.split(',');
     const notes = [];
