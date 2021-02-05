@@ -92,9 +92,33 @@ function clickCell(event) {
 }
 
 function playOrPause() {
-  return;
+  const error = document.getElementById('error');
+  // check whether SoundFontPlayer instance is playing
+  if (player.isPlaying()) {
+    player.stop();
+  } else {
+    const nseq = buttonGrid.getNoteSequence();
+    if (nseq.notes.length === 0) {
+      // call the error for empty note sequence
+      showEmptyNoteSequenceError(error);
+      return;
+    }
+  }
 }
 
 function infill() {
   return;
+}
+
+function showEmptyNoteSequenceError(error) {
+  error.textContent = 'Draw some 🎵 first!';
+  error.hidden = false;
+  error.focus();
+  setTimeout(clearError(error), 2000);
+  
+}
+
+function clearError(error) {
+  error.textContent = '';
+  error.hidden = true; 
 }
