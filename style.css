@@ -1,7 +1,12 @@
 /* CSS files add styling rules to your content */
+* {
+  box-sizing: border-box;
+}
+
 html {
   --size: 50px;
   --light: #F7E6DA;
+  --purple: #09315d;
 }
 
 body {
