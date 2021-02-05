@@ -39,8 +39,14 @@ div {
   background: #c4f5ff;
 }
 
+/* make pixels opaque when in hovered-over state */
 .pixel:hover {
   opacity: 0.7;
+}
+
+/* chained selectors for pixels in activated state */
+.pixel.voice {
+  background: 
 }
 
 /* color the 1st beat of every measure

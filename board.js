@@ -158,11 +158,16 @@ class ButtonGrid {
     // updating state for. Just need to toggle the appropriate state,
     // changing it into its opposite.
     const dot = this.data[i][j];
-    if (dot === 1) {
+    console.log(dot);
+    if (dot.on === 1) {
       dot.on = 0;
     } else {
       dot.on = 1;
     }
+    
+    // debug log
+    console.log(dot);
+    console.log(dot.on);
 
     // Besides flipping the value of 'dot', there are 2 other things
     // we have to take care of:

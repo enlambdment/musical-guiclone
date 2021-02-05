@@ -14,7 +14,7 @@ const buttonGrid = new ButtonGrid();
      This is the safest / most principled thing to do, I think.
 */
 const container = document.getElementById('container');
-container.addEventListener('mousedown', clickCell);
+container.addEventListener('click', clickCell);
 
 function clickCell(event) {
   // obtain event target
@@ -24,12 +24,10 @@ function clickCell(event) {
   if (tgt.tagName !== "BUTTON") {
     return;
   } else {
-    // do some stuff
-    return;
-    
+
     // 1. get the position (row and col) of the selected button
-    const row = parseInt(tgt.data.row);
-    const col = parseInt(tgt.data.col);
+    const row = parseInt(tgt.dataset.row);
+    const col = parseInt(tgt.dataset.col);
     
     // 2. toggle the cell at this position, so we can know the updated
     //    cell state.
