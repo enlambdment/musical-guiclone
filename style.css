@@ -1,12 +1,8 @@
 /* CSS files add styling rules to your content */
-* {
-  box-sizing: border-box;
-}
-
 html {
-  --size: 50px;
+/*   --size: 50px;
   --light: #F7E6DA;
-  --purple: #09315d;
+  --purple: #09315d; */
 }
 
 body {
@@ -23,52 +19,15 @@ div {
   display: block;
 }
 
-/*
- The font does not have equally wide characters,
- so unless I specify otherwise, the buttons do not 
- line up on an evenly spaced grid.
- How to fix this? (w/o changing font)
-*/
-
-.row {
-  visibility: visible;
-/*   height: initial; */
-  opacity: 1;
-}
-
-/* Since this is more specific
-   than 'button' selector, this should
-   take precedence even if it doesn't 
-   get listed later in the stylesheet */
 .pixel {
   display: inline-block;
   visibility: visible;
-  vertical-align: middle;
-  -webkit-appearance: none;
-  -webkit-border-radius: 0px;
-  appearance: none;
-  
-  /* The following properties use 
-     'inherit', which means that the 
-     computed value of the parent element 
-     is used for these. 
-  
-  (Since these pixel-class elements are 
-  children of a row-class div element, look
-  for these attributes' values there.)
-  */
-  font-size: inherit;
-  line-height: inherit;
-  letter-spacing: inherit;
-  
-  cursor: pointer;
-/*   margin: 1px; */
-  font-family: monospace;
-/*   background: var(--light); */
-  size: 50px;
-  
+  vertical-align: middle;  
+  height: 12px;
+  width: 12px;
+  padding: 0;
   border: none;
-  border-radius: 1px;
-/*   padding: 0; */
-  
+  margin: 1px;
+  background: #c9f3ff;
 }
+
