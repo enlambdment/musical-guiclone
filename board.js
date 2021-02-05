@@ -254,14 +254,4 @@ class ButtonGrid {
   }
 } 
 
-// once we create a ButtonGrid instance,
-// we still have to place it somewhere in the 
-// DOM for it to appear on the page
-const myButtonGrid = new ButtonGrid();
-
-// Set up touch events.
-// The row-class divs of buttons were laid out within
-// the container-class div that ButtonGrid() inserts in
-// the DOM upon being called. 
-const body = document.getElementById('container');
 
