@@ -19,6 +19,8 @@ div {
   display: block;
 }
 
+/* class representing the leftmost
+   element on each row, labeling the pitch */
 .piano-key {
   padding: 0;
   font-size: 12px !important;
@@ -26,10 +28,9 @@ div {
   font-family: monospace;
 }
 
+/* class representing the squares which
+   fill in every row */
 .pixel {
-  display: inline-block;
-  visibility: visible;
-  vertical-align: middle;  
   height: 12px;
   width: 12px;
   padding: 0;
