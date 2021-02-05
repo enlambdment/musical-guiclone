@@ -8,6 +8,7 @@ html {
 body {
   font-family: helvetica, arial, sans-serif;
   margin: 2em;
+  background: #d4ff70;
 }
 
 h1 {
@@ -39,18 +40,25 @@ div {
   background: #c4f5ff;
 }
 
+/* color the 1st beat of every measure slightly darker.
+   This rule should win over the general .pixel selector
+   rule, but lose to the rules on hover state & cell 
+   activation
+*/
+.container .row .pixel:nth-child(4n+2) {
+  background: #b8e9f2;
+}
+
 /* make pixels opaque when in hovered-over state */
 .pixel:hover {
   opacity: 0.7;
 }
 
-/* chained selectors for pixels in activated state */
+/* chained selectors for pixels in activated state.
+   I think we need an !important modifier because this rule
+   is less specific, on its own, than the rule for the start
+   beats of every measure. */
 .pixel.voice {
-  background: 
+  background: #b26bdb !important;
 }
 
-/* color the 1st beat of every measure
-   slightly darker */
-.container .row .pixel:nth-child(4n+2) {
-  background: #b8e9f2;
-}

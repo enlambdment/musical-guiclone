@@ -158,17 +158,12 @@ class ButtonGrid {
     // updating state for. Just need to toggle the appropriate state,
     // changing it into its opposite.
     const dot = this.data[i][j];
-    console.log(dot);
     if (dot.on === 1) {
       dot.on = 0;
     } else {
       dot.on = 1;
     }
     
-    // debug log
-    console.log(dot);
-    console.log(dot.on);
-
     // Besides flipping the value of 'dot', there are 2 other things
     // we have to take care of:
     /* 1. calling updateHash() method, to update the hash string
@@ -199,7 +194,7 @@ class ButtonGrid {
     for (let i = 0; i < GRID_HEIGHT; i++) {
       // iterate over cols
       for (let j = 0; j < GRID_WIDTH; j++) {
-        if (this.data[i][j] === 1) {
+        if (this.data[i][j].on === 1) {
           // Again, because I am not using any concept of separate
           // voices / vocal ranges, the format of the hash substring
           // for one activated cell in the GUI should be just 2 
@@ -208,6 +203,7 @@ class ButtonGrid {
         }
       }
     }
+        
     // This puts the current contents of the GUI 
     // into the window URL, in serialized form.
     // It is preceded by a #-symbol.
