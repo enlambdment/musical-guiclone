@@ -1,6 +1,7 @@
 /* CSS files add styling rules to your content */
 html {
-  size: 50px;
+  --size: 50px;
+  --light: #F7E6DA;
 }
 
 body {
@@ -24,17 +25,10 @@ div {
  How to fix this? (w/o changing font)
 */
 
-button {
-  font-size: 100%;
-  border: 0;
-  background: blue;
-  margin: 0.5px;
-/*   text-align: justify; */
-/*   display: flex; */
-  
-  /* This refers to the *text* color
-     of any strings contained in the button-el. */
-  color: yellow;
+.row {
+  visibility: visible;
+/*   height: initial; */
+  opacity: 1;
 }
 
 /* Since this is more specific
@@ -61,4 +55,15 @@ button {
   font-size: inherit;
   line-height: inherit;
   letter-spacing: inherit;
+  
+  cursor: pointer;
+/*   margin: 1px; */
+  font-family: monospace;
+/*   background: var(--light); */
+  size: 50px;
+  
+  border: none;
+  border-radius: 1px;
+/*   padding: 0; */
+  
 }
