@@ -21,6 +21,9 @@ const buttonGrid = new ButtonGrid();
 // Load sound fonts.
 // (Will global variables from board.js be in scope here?)
 const allNotes = [];
+// Experiment with the attributes set for the note 
+// being pushed to 'allNotes' so that it sounds for
+// a shorter time? (startTime, endTime)
 for (let i = 0; i < buttonGrid.grid_height; i++) {
   allNotes.push({pitch: MAX_PITCH - i, velocity: 80});
 }
@@ -63,7 +66,9 @@ function clickCell(event) {
     //    board's data.
     const dot = buttonGrid.data[row][col];
     if (dot.on === 1) {
+      // Begin sounding the note.
       player.playNoteDown({pitch: pitch, velocity: 80});
+      // Finish sounding the note. This is 
     }
   }
 }
