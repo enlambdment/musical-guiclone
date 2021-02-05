@@ -122,18 +122,24 @@ function playOrPause() {
 }
 
 function infill() {
+  /* TO DO:
+    Update buttonGrid.data with the harmonizing material
+    Make sure this propagates elsewhere (i.e. to page DOM and url hash)
+    Give the infilled materials a special HTML class
+    Provide CSS styling for the separate infilled class
+  */ 
   const bgData = buttonGrid.data;
-const consonances = [0,3,4,7,8,9];
-let pitchesPerTime = [];
-for (let i = 0; i < buttonGrid.grid_width; i++) {
+  const consonances = [0,3,4,7,8,9];
+  let pitchesPerTime = [];
+  for (let i = 0; i < buttonGrid.grid_width; i++) {
     // get all buttonGrid.data[..][i]
     const rowIdxs = Array(buttonGrid.grid_height).fill(0).map((x,y) => x+y);
     const onIdxs = rowIdxs.filter(idx => bgData[idx][i].on === 1);
     pitchesPerTime.push(onIdxs);
-}
-let allPitches = Array(buttonGrid.grid_height).fill(MAX_PITCH).map((x,y) => x-y);
-let infillPitches = [];
-for (let i = 0; i < buttonGrid.grid_width; i++) {
+  }
+  let allPitches = Array(buttonGrid.grid_height).fill(MAX_PITCH).map((x,y) => x-y);
+  let infillPitches = [];
+  for (let i = 0; i < buttonGrid.grid_width; i++) {
     // get ith array in pitchesPerTimes
     let currentPitches = pitchesPerTime[i];
     // is it empty?
@@ -149,7 +155,13 @@ for (let i = 0; i < buttonGrid.grid_width; i++) {
         let randPitch = randArrayItem(consonantPitches);
         infillPitches.push(randPitch);
     };
-}
+  };
+  return infillPitches;
+  
+  for (let entry of infillPitches.entries()) {
+    // use MAX_PITCH - entry[1], entry[0];
+    buttonGrid.toggleCell(MAX_PITCH - entry[1], entry[0]);
+  }
 }
 
 function showEmptyNoteSequenceError(error) {
