@@ -19,6 +19,13 @@ div {
   display: block;
 }
 
+.piano-key {
+  padding: 0;
+  font-size: 12px !important;
+  margin-right: 4px;
+  font-family: monospace;
+}
+
 .pixel {
   display: inline-block;
   visibility: visible;
@@ -28,6 +35,15 @@ div {
   padding: 0;
   border: none;
   margin: 1px;
-  background: #c9f3ff;
+  background: #c4f5ff;
 }
 
+.pixel:hover {
+  opacity: 0.7;
+}
+
+/* color the 1st beat of every measure
+   slightly darker */
+.container .row .pixel:nth-child(4n+2) {
+  background: #b8e9f2;
+}
