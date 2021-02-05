@@ -57,6 +57,17 @@ player.loadSamples({notes: allNotes});
 const container = document.getElementById('container');
 container.addEventListener('click', clickCell);
 
+// function to generate random integer within a range
+function random(min, max) {
+  const num = Math.floor(Math.random() * (max - min + 1)) + min;
+  return num;
+}
+
+function randArrayItem(arr) {
+  let randIdx = random(0, arr.length - 1);
+  return arr[randIdx];
+}
+
 function clickCell(event) {
   // obtain event target
   let tgt = event.target;
@@ -111,7 +122,34 @@ function playOrPause() {
 }
 
 function infill() {
-  return;
+  const bgData = buttonGrid.data;
+const consonances = [0,3,4,7,8,9];
+let pitchesPerTime = [];
+for (let i = 0; i < buttonGrid.grid_width; i++) {
+    // get all buttonGrid.data[..][i]
+    const rowIdxs = Array(buttonGrid.grid_height).fill(0).map((x,y) => x+y);
+    const onIdxs = rowIdxs.filter(idx => bgData[idx][i].on === 1);
+    pitchesPerTime.push(onIdxs);
+}
+let allPitches = Array(buttonGrid.grid_height).fill(MAX_PITCH).map((x,y) => x-y);
+let infillPitches = [];
+for (let i = 0; i < buttonGrid.grid_width; i++) {
+    // get ith array in pitchesPerTimes
+    let currentPitches = pitchesPerTime[i];
+    // is it empty?
+    if (currentPitches.length === 0) {
+        // if so, just get a random pitch
+        let randPitch = randArrayItem(allPitches);
+        infillPitches.push(randPitch);
+    } else {
+        // if not empty, harmonize with a pitch from currentPitches
+        let basePitch = randArrayItem(currentPitches); 
+        let consonantPitches = allPitches.filter(
+            p => (Math.abs(p - basePitch) % 12) in consonances);
+        let randPitch = randArrayItem(consonantPitches);
+        infillPitches.push(randPitch);
+    };
+}
 }
 
 function showEmptyNoteSequenceError(error) {
