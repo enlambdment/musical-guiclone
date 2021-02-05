@@ -66,9 +66,13 @@ function clickCell(event) {
     //    board's data.
     const dot = buttonGrid.data[row][col];
     if (dot.on === 1) {
+      const note = {pitch: pitch, velocity: 80};
       // Begin sounding the note.
-      player.playNoteDown({pitch: pitch, velocity: 80});
-      // Finish sounding the note. This is 
+      player.playNoteDown(note);
+      // Finish sounding the note. This action is provided
+      // as a callback to 'setTimeout' so that the specified 
+      // number of milliseconds may elapse before the tone ends.
+      setTimeout(() => player.playNoteUp(note), 150);
     }
   }
 }
