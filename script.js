@@ -9,11 +9,25 @@ let player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/
 */
 let playerHardStop = false;
 
-// ?
+// When start button is clicked, elicit the creation of 
+// a promise which is either fulfilled, if an AudioContext
+// can be created, or else unfulfilled if not.
+// The AudioContext is needed for the player to synthesize audio.
 document.querySelector('.start-btn').addEventListener('click', async () => {
   await player.start()
   console.log('audio is ready')
 })
+
+// When play / stop button is clicked, elicit the process
+// which checks whether audio is currently playing, plays what 
+// is on the musical grid GUI if not, and stops the player audio
+// if so.
+document.querySelector('.playpause-btn').addEventListener('click', playOrPause);
+
+// When infill button is clicked, elicit the process which 
+// fills in some additional musical material to the board
+// (either via pre-trained model or some other generation logic.)
+document.querySelector('.infill-btn').addEventListener('click', infill);
 
 /* Create a grid of buttons: this is the musical GUI */
 const buttonGrid = new ButtonGrid();
@@ -75,4 +89,12 @@ function clickCell(event) {
       setTimeout(() => player.playNoteUp(note), 150);
     }
   }
+}
+
+function playOrPause() {
+  return;
+}
+
+function infill() {
+  return;
 }

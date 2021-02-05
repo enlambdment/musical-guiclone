@@ -17,7 +17,7 @@
          in order for an AudioContext to run, and the audio
          synthesis to work. -->
     <button class="start-btn">
-      Start!
+      Start! 🔊
     </button>
     
     <!-- We also need a button to play back for us what we have so far.
@@ -25,10 +25,25 @@
          button depending on whether audio is currently playing or not
          (which we track with a global variable I think?) 
          Here we will do likewise. -->
+    <button class="playpause-btn">
+      Play ▶️ / Stop ⏹️
+    </button>
     
+    <!-- And a button for the infill action, which is the element for us
+         to equip with an event listener that will prompt additional music
+         generation. -->
+    <button class="infill-btn">
+      Infill 📝
+    </button>
     
+    <!-- A horizontal separator to set the control buttons
+         apart from the musical GUI. -->
+    <hr>
+    
+    <!-- Upon page rendering, this element is filled with the grid of 
+         buttons which make up the musical GUI. -->
     <div class="container" id="container">
-      <!-- try putting some buttons in here -->
+      
     </div>
   </body>
 
