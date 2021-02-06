@@ -117,12 +117,22 @@ function playOrPause() {
     player.stop();
   } else {
     const nseq = buttonGrid.getNoteSequence();
-    if (nseq.notes.length === 0) {
-      // call the error for empty note sequence
-      showEmptyNoteSequenceError(error);
-      return;
-    }
+    play(nseq);
   }
+  // if !(player.isPlaying()) then call play() 
+  // (which we the author of script.js
+  // have to define.)
+  // Add back check that nseq should not be empty
+  // before invoking play().
+  
+}
+
+function play(sq) {
+  // merge together copies of adjacent notes so that 
+  // instead of each of them sounding, one note of 
+  // the total duration sounds.
+  const msq = mm.sequences.mergeConsecutiveNotes(sq);
+  player.start(msq);
 }
 
 function infill() {
@@ -185,15 +195,15 @@ function infill() {
   return infillPitches;
 }
 
-function showEmptyNoteSequenceError(error) {
-  error.textContent = 'Draw some 🎵 first!';
-  error.hidden = false;
-  error.focus();
-  setTimeout(clearError(error), 2000);
+// function showEmptyNoteSequenceError(error) {
+//   error.textContent = 'Draw some 🎵 first!';
+//   error.hidden = false;
+//   error.focus();
+//   setTimeout(clearError(error), 2000);
   
-}
+// }
 
-function clearError(error) {
-  error.textContent = '';
-  error.hidden = true; 
-}
+// function clearError(error) {
+//   error.textContent = '';
+//   error.hidden = true; 
+// }
