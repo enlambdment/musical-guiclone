@@ -179,8 +179,7 @@ function infill() {
   
   for (let entry of infillPitches.entries()) {
     // use MAX_PITCH - entry[1], entry[0];
-    console.log(entry[1], entry[0]);
-    buttonGrid.toggleCell(MAX_PITCH - entry[1], entry[0]);
+    buttonGrid.toggleCell(MAX_PITCH - entry[1], entry[0], 2);
   };
   
   return infillPitches;

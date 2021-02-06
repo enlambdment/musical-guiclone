@@ -59,6 +59,9 @@ div {
    is less specific, on its own, than the rule for the start
    beats of every measure. */
 .pixel.voice {
-  background: #b26bdb !important;
+  background: #000000 !important;
 }
 
+.pixel.infill {
+  background: #b26bdb !important;
+}

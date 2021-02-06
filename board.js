@@ -207,10 +207,11 @@ class ButtonGrid {
     for (let i = 0; i < GRID_HEIGHT; i++) {
       // iterate over cols
       for (let j = 0; j < GRID_WIDTH; j++) {
-        if (this.data[i][j].on === 1) {
+        let cellOn = this.data[i][j].on ;
+        if (cellOn === 1 || cellOn === 2) {
           // Also include a 3rd param indicating the reason that the cell is on
-          // ()
-          s += `${MAX_PITCH-i}:${j},`;
+          // (.on === 1 for user click vs. .on === 2 for infill)
+          s += `${MAX_PITCH-i}:${j}:${cellOn}`;
         }
       }
     }
@@ -222,12 +223,19 @@ class ButtonGrid {
   }
   
   // Modify the DOM node for the UI button (1st param)
-  // in accordance with the current state (2nd param)
+  // in accordance with the current state (2nd param),
+  // which now has 3 possible values:
+  // btnState = 0:   off
+  // btnState = 1:   on, due to user click
+  // btnState = 2:   on, due to infill
   updateButton(btn, btnState) {
-    if (btnState === 1) {
+    if (btnState === 2) {
+      btn.setAttribute('class', 'pixel infill');
+      btn.setAttribute('aria-label', 'cell, infill');
+    } else if (btnState === 1) {
       btn.setAttribute('class', 'pixel voice');
       btn.setAttribute('aria-label', 'cell, on')
-    } else {
+    } else if (btnState === 0) {
       btn.setAttribute('class', 'pixel');
       btn.setAttribute('aria-label', 'cell, off');
     }
