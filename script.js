@@ -140,10 +140,17 @@ function infill() {
     // before pushing onto pitchesPerTime, we should convert from
     // index to pitch (= MAX_PITCH - index)
     pitchesPerTime.push(onIdxs.map(idx => MAX_PITCH - idx));
-    // DEBUG
-    console.log(pitchesPerTime);
   }
+  // DEBUG
+  console.log("pitches per time:");
+  console.log(pitchesPerTime);
+  
   let allPitches = Array(buttonGrid.grid_height).fill(MAX_PITCH).map((x,y) => x-y);
+  
+  //DEBUG 
+  console.log("all pitches:");
+  console.log(allPitches);
+  
   let infillPitches = [];
   for (let i = 0; i < buttonGrid.grid_width; i++) {
     // get ith array in pitchesPerTimes
@@ -163,7 +170,8 @@ function infill() {
     };
   };
   // DEBUG
-  
+  console.log("infilled pitches:");
+  console.log(infillPitches);
   
   for (let entry of infillPitches.entries()) {
     // use MAX_PITCH - entry[1], entry[0];
