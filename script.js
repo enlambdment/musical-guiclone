@@ -88,7 +88,11 @@ function clickCell(event) {
     
     // 2. toggle the cell at this position, so we can know the updated
     //    cell state.
-    buttonGrid.toggleCell(row, col);
+    // ADD NEW PARAM to toggleCell to distinguish
+    // cells toggled by user input vs. cells toggled
+    // infill.
+    // We will label user input as 1.
+    buttonGrid.toggleCell(row, col, 1);
     
     // 3. if the cell has become activated (turned on), sound out its pitch.
     //    Use the row / col values to access the corresponding part of the

@@ -139,13 +139,9 @@ class ButtonGrid {
   }
   
   // Toggles a particular dot from on to off.
-  // In coconet GUI implementation, there is a 3rd parameter
-  // which can denote either erasing, masking, or the voice
-  // that the user has selected to paint a square inside of.
-  // Instead, I will simplify & make this a method which just
-  // toggles a square's current state to the opposite of what
-  // it currently is.
-  toggleCell(i, j) {
+  // We need a 3rd param to distinguish user action
+  // vs. infill action toggling
+  toggleCell(i, j, flag) {
     // Search for a .pixel element at (i,j)-th location
     const uiButton = document.querySelector(
       `.pixel[data-row="${i}"][data-col="${j}"]`);
@@ -157,12 +153,29 @@ class ButtonGrid {
     // ranges, we do not need to know the pitch of the square we are
     // updating state for. Just need to toggle the appropriate state,
     // changing it into its opposite.
+    
+    // What should happen if an off (=== 0) cell 
+    //                       or on  (=== 1) cell is clicked by user (flag === 1)?
+    // Switch it to its opposite state.
+    // However, if an infilled      (=== 2) cell is clicked by user (flag === 1),
+    // then turn on the cell as a user-clicked cell. (=== 1).
+    // What should happen if an off (=== 0) cell
+    //                       or on  (=== 1) cell is infilled        (flag === 2)?
     const dot = this.data[i][j];
-    if (dot.on === 1) {
-      dot.on = 0;
-    } else {
-      dot.on = 1;
-    }
+    // CASE OF USER CLICK (flag === 1)
+    if (flag === 1) {
+      if (dot.on === 1) {
+        dot.on = 0;
+      } else {
+        dot.on = 1;
+      };
+      // CASE OF INFILL (flag === 2)
+    } else if (flag === 2) {
+      // Override JS obj. 'on'-val. at location to 2,
+      // labelling it as infilled cell, regardless of 
+      // current state
+      dot.on = 2;
+    };
     
     // Besides flipping the value of 'dot', there are 2 other things
     // we have to take care of:
@@ -195,10 +208,8 @@ class ButtonGrid {
       // iterate over cols
       for (let j = 0; j < GRID_WIDTH; j++) {
         if (this.data[i][j].on === 1) {
-          // Again, because I am not using any concept of separate
-          // voices / vocal ranges, the format of the hash substring
-          // for one activated cell in the GUI should be just 2 
-          // :-delimited entries, not 3.
+          // Also include a 3rd param indicating the reason that the cell is on
+          // ()
           s += `${MAX_PITCH-i}:${j},`;
         }
       }
