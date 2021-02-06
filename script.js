@@ -164,7 +164,7 @@ function infill() {
         // if not empty, harmonize with a pitch from currentPitches
         let basePitch = randArrayItem(currentPitches); 
         let consonantPitches = allPitches.filter(
-            p => (Math.abs(p - basePitch) % 12) in consonances);
+            p => consonances.includes(Math.abs(p - basePitch) % 12));
         let randPitch = randArrayItem(consonantPitches);
         infillPitches.push(randPitch);
     };
