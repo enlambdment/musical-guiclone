@@ -136,12 +136,6 @@ function play(sq) {
 }
 
 function infill() {
-  /* TO DO:
-    Update buttonGrid.data with the harmonizing material
-    Make sure this propagates elsewhere (i.e. to page DOM and url hash)
-    Give the infilled materials a special HTML class
-    Provide CSS styling for the separate infilled class
-  */ 
   const bgData = buttonGrid.data;
   const consonances = [0,3,4,7,8,9];
   let pitchesPerTime = [];
@@ -195,15 +189,7 @@ function infill() {
   return infillPitches;
 }
 
-// function showEmptyNoteSequenceError(error) {
-//   error.textContent = 'Draw some 🎵 first!';
-//   error.hidden = false;
-//   error.focus();
-//   setTimeout(clearError(error), 2000);
+// infill function, take #2
+function infill2() {
   
-// }
-
-// function clearError(error) {
-//   error.textContent = '';
-//   error.hidden = true; 
-// }
+}
