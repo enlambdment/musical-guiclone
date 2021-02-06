@@ -1,3 +1,6 @@
+import * as pd from 'probability-distributions';
+const myRbinom = pd.rbinom(7, 12, 0.2);
+
 /* We need a SoundFontPlayer */
 let player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
 
@@ -191,5 +194,9 @@ function infill() {
 
 // infill function, take #2
 function infill2() {
-  
+  /* This time, I will try to leverage a probability distribution 
+     (e.g. binomial distribution) to direct how far away each 
+     generated harmonizing note will be from the previous one, 
+     in semitone distance.
+  */
 }
