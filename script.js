@@ -132,10 +132,16 @@ function infill() {
   const consonances = [0,3,4,7,8,9];
   let pitchesPerTime = [];
   for (let i = 0; i < buttonGrid.grid_width; i++) {
-    // get all buttonGrid.data[..][i]
+    // get all possible row indices
     const rowIdxs = Array(buttonGrid.grid_height).fill(0).map((x,y) => x+y);
+    // take only the row indices for which the cell at that row index,
+    // and col index: i, is active by user (.on === 1)
     const onIdxs = rowIdxs.filter(idx => bgData[idx][i].on === 1);
-    pitchesPerTime.push(onIdxs);
+    // before pushing onto pitchesPerTime, we should convert from
+    // index to pitch (= MAX_PITCH - index)
+    pitchesPerTime.push(onIdxs.map(idx => MAX_PITCH - idx));
+    // DEBUG
+    console.log(pitchesPerTime);
   }
   let allPitches = Array(buttonGrid.grid_height).fill(MAX_PITCH).map((x,y) => x-y);
   let infillPitches = [];
@@ -156,6 +162,8 @@ function infill() {
         infillPitches.push(randPitch);
     };
   };
+  // DEBUG
+  
   
   for (let entry of infillPitches.entries()) {
     // use MAX_PITCH - entry[1], entry[0];
