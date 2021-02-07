@@ -1,6 +1,3 @@
-// import * as pd from 'probability-distributions';
-// const myRbinom = pd.rbinom(7, 12, 0.2);
-
 /* We need a SoundFontPlayer */
 let player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
 
