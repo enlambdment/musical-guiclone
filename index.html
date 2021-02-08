@@ -8,23 +8,13 @@
   
   <body>
     <h1>musical button grid</h1>
-
-    <!-- I think we need a start button that the user can
-         press in order to begin.
-         We will equip this button with an event listener 
-         which, upon click, calls Tone.start().
-         This will return a promise which must be resolved 
-         in order for an AudioContext to run, and the audio
-         synthesis to work. -->
-    <button class="start-btn">
-      Start! 🔊
-    </button>
     
     <!-- We also need a button to play back for us what we have so far.
          In the coconet GUI, this serves a double function as play / stop 
          button depending on whether audio is currently playing or not
          (which we track with a global variable I think?) 
          Here we will do likewise. -->
+
     <button class="playpause-btn">
       Play ▶️ / Stop ⏹️
     </button>

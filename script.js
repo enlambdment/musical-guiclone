@@ -9,15 +9,6 @@ let player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/
 */
 let playerHardStop = false;
 
-// When start button is clicked, elicit the creation of 
-// a promise which is either fulfilled, if an AudioContext
-// can be created, or else unfulfilled if not.
-// The AudioContext is needed for the player to synthesize audio.
-document.querySelector('.start-btn').addEventListener('click', async () => {
-  await player.start()
-  console.log('audio is ready')
-})
-
 // When play / stop button is clicked, elicit the process
 // which checks whether audio is currently playing, plays what 
 // is on the musical grid GUI if not, and stops the player audio
@@ -132,7 +123,10 @@ function play(sq) {
   // instead of each of them sounding, one note of 
   // the total duration sounds.
   const msq = mm.sequences.mergeConsecutiveNotes(sq);
-  player.start(msq);
+  /* elicit the creation of a promise which is either fulfilled, 
+      if an AudioContext can be created, or else unfulfilled if not.
+     The AudioContext is needed for the player to synthesize audio. */
+  player.start(msq);      
 }
 
 function infill() {
