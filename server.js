@@ -12,6 +12,8 @@ const express = require('express')
 // Creates an Express app.
 const app = express() 
 
+
+
 // When the app GETs the route specified in the 1st param,
 // here just '/', then it should carry out the callback
 // process specified in the 2nd param.
@@ -27,6 +29,6 @@ app.get("/", (request, response) => {
 // (Otherwise, there will never be an occasion for the 
 // callback to be run, because the above instruction just
 // sets up the callback as an asynchronous process)
-const listener = app.listen(
+app.listen(
   process.env.PORT, () => {
-  console.log(`Your app is listening on port ${listener.address().port}`)})
+  console.log(`Your app is listening on port ${process.env.PORT}`)});
