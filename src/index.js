@@ -1,4 +1,18 @@
-/* We need a SoundFontPlayer */
+/* NOW WE MUST:
+    - import from ./buttongrid.js
+    - require (?) functionality from:
+      * @magenta/music
+      * probability-distributions
+*/
+// works???
+// Actually, I think I'm *not* supposed to
+// require because I'm going to be using webpack
+// for recognizing & bundling specifically the 
+// data / methods from the library which I need for
+// my source code
+const mm = require('@magenta/music');
+import * as bg from "./buttongrid.js";
+
 let player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
 
 /* You have to set up the player with a callback object
@@ -21,7 +35,7 @@ document.querySelector('.playpause-btn').addEventListener('click', playOrPause);
 document.querySelector('.infill-btn').addEventListener('click', infill);
 
 /* Create a grid of buttons: this is the musical GUI */
-const buttonGrid = new ButtonGrid();
+const buttonGrid = new bg.ButtonGrid();
 
 // Load sound fonts.
 // (Will global variables from board.js be in scope here?)
