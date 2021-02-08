@@ -11,7 +11,9 @@
 // data / methods from the library which I need for
 // my source code
 const mm = require('@magenta/music');
+const pd = require('probability-distributions');
 import * as bg from "./buttongrid.js";
+
 
 let player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
 
