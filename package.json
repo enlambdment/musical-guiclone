@@ -1,0 +1,12 @@
+{
+  "name":         "guiclone-remix-attempt",
+  "version":      "0.0.1",
+  "description":  "Attempting to rebuild GUI clone with Node / webpack",
+  "scripts": {
+    "start": "webpack && node server.js"
+  },
+  
+  "dependencies": {
+    "express": 
+  }
+}
