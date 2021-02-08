@@ -123,6 +123,8 @@ function play(sq) {
   // instead of each of them sounding, one note of 
   // the total duration sounds.
   const msq = mm.sequences.mergeConsecutiveNotes(sq);
+  /* Set tempo first. Param is in qpm (quarter-note per minute) */
+  player.setTempo(100);
   /* elicit the creation of a promise which is either fulfilled, 
       if an AudioContext can be created, or else unfulfilled if not.
      The AudioContext is needed for the player to synthesize audio. */
