@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Button experiment</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  
+  <body>
+    <h1>musical button grid</h1>
+    
+    <!-- We also need a button to play back for us what we have so far.
+         In the coconet GUI, this serves a double function as play / stop 
+         button depending on whether audio is currently playing or not
+         (which we track with a global variable I think?) 
+         Here we will do likewise. -->
+
+    <button class="playpause-btn">
+      Play ▶️ / Stop ⏹️
+    </button>
+    
+    <!-- And a button for the infill action, which is the element for us
+         to equip with an event listener that will prompt additional music
+         generation. -->
+    <button class="infill-btn">
+      Infill 📝
+    </button>
+    
+    <!-- A horizontal separator to set the control buttons
+         apart from the musical GUI. -->
+    <hr>
+    
+    <!-- Upon page rendering, this element is filled with the grid of 
+         buttons which make up the musical GUI. -->
+    <div class="container" id="container">
+      
+    </div>
+    
+    <!-- For error handling. -->
+    <div id="error" hidden></div>
+  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/@magenta/music@1.7.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/probability-distributions@0.9.1"></script>
+  <script src="board.js"></script>
+  <script src="script.js"></script>
+</html>
