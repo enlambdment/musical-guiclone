@@ -1,13 +1,15 @@
 /* 
- I think as soon as I commented out these 'require' statements,
+ As soon as I commented out these 'require' statements,
  the 'node server.js' command is able to run and serve the app
- properly. Is this true? Try it again with these uncommented.
+ properly. I confirmed this by uncommenting once again, 
+ reproducing the previous broken behavior.
 */
-
 // const mm = require('@magenta/music');
 // const pd = require('probability-distributions');
 import * as bg from "./buttongrid.js";
 
+// Also remember to import from css stylesheet (why?)
+import appstyles as css from "./app.css";
 
 let player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
 
