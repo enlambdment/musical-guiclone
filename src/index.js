@@ -6,7 +6,7 @@
 */
 // const mm = require('@magenta/music');
 // const pd = require('probability-distributions');
-import * as bg from "./buttongrid.js";
+import * as bg from "./buttongrid";
 
 // Also remember to import from css stylesheet (why?)
 // Currently breaking, no idea why because I did 
