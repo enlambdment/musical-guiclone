@@ -30,6 +30,7 @@ class ButtonGrid {
     // are assigned using global const's
     this.grid_width = GRID_WIDTH;
     this.grid_height = GRID_HEIGHT;
+    this.max_pitch = MAX_PITCH;
     this.reset();
   }
   

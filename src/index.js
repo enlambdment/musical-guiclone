@@ -11,9 +11,9 @@ import * as bg from "./buttongrid.js";
 // Also remember to import from css stylesheet (why?)
 // Currently breaking, no idea why because I did 
 // specify in webpack.config.js a loader for CSS files
-import appstyles as css from "./app.css";
+import "./app.css";
 
-let player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
+let player = new SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
 
 /* You have to set up the player with a callback object
    before you can use it.
@@ -44,7 +44,7 @@ const allNotes = [];
 // being pushed to 'allNotes' so that it sounds for
 // a shorter time? (startTime, endTime)
 for (let i = 0; i < buttonGrid.grid_height; i++) {
-  allNotes.push({pitch: MAX_PITCH - i, velocity: 80});
+  allNotes.push({pitch: buttonGrid.max_pitch - i, velocity: 80});
 }
 player.loadSamples({notes: allNotes});
 
@@ -157,13 +157,13 @@ function infill() {
     const onIdxs = rowIdxs.filter(idx => bgData[idx][i].on === 1);
     // before pushing onto pitchesPerTime, we should convert from
     // index to pitch (= MAX_PITCH - index)
-    pitchesPerTime.push(onIdxs.map(idx => MAX_PITCH - idx));
+    pitchesPerTime.push(onIdxs.map(idx => buttonGrid.max_pitch - idx));
   }
   // DEBUG
   console.log("pitches per time:");
   console.log(pitchesPerTime);
   
-  let allPitches = Array(buttonGrid.grid_height).fill(MAX_PITCH).map((x,y) => x-y);
+  let allPitches = Array(buttonGrid.grid_height).fill(buttonGrid.max_pitch).map((x,y) => x-y);
   
   //DEBUG 
   console.log("all pitches:");
@@ -193,7 +193,7 @@ function infill() {
   
   for (let entry of infillPitches.entries()) {
     // use MAX_PITCH - entry[1], entry[0];
-    buttonGrid.toggleCell(MAX_PITCH - entry[1], entry[0], 2);
+    buttonGrid.toggleCell(buttonGrid.max_pitch - entry[1], entry[0], 2);
   };
   
   return infillPitches;
