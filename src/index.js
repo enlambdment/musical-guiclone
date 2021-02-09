@@ -9,6 +9,8 @@
 import * as bg from "./buttongrid.js";
 
 // Also remember to import from css stylesheet (why?)
+// Currently breaking, no idea why because I did 
+// specify in webpack.config.js a loader for CSS files
 import appstyles as css from "./app.css";
 
 let player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
