@@ -4,9 +4,8 @@
  properly. I confirmed this by uncommenting once again, 
  reproducing the previous broken behavior.
 */
-// const mm = require('@magenta/music');
-// const pd = require('probability-distributions');
-import * as mm from "@magenta/music";
+// This statement, for importing from magenta music, still doesn't work.
+import * as mm from "node_modules/@magenta/music/dist/magentamusic";
 import * as bg from "./buttongrid";
 
 // Also remember to import from css stylesheet (why?)
@@ -14,7 +13,7 @@ import * as bg from "./buttongrid";
 // specify in webpack.config.js a loader for CSS files
 import "./app.css";
 
-let player = new SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
+let player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
 
 /* You have to set up the player with a callback object
    before you can use it.

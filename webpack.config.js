@@ -6,6 +6,14 @@ module.exports = {
   entry: {
     main: './src/index.js'
   },
+  
+  // create alias for 'node_modules' to assist in locating @magenta/music dir
+  resolve: {
+    alias: {
+      'node_modules': path.join(__dirname, 'node_modules')
+    }
+  },
+  
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist')
