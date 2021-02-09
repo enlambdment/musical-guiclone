@@ -19,6 +19,6 @@
     "node": "11.x"
   },
   "keywords": [
-    "node", "glitch", "express", "webpack", "magenta"
+    "node", "glitch", "express", "webpack"
   ]
 }

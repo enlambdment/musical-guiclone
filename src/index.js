@@ -1,17 +1,11 @@
-/* NOW WE MUST:
-    - import from ./buttongrid.js
-    - require (?) functionality from:
-      * @magenta/music
-      * probability-distributions
+/* 
+ I think as soon as I commented out these 'require' statements,
+ the 'node server.js' command is able to run and serve the app
+ properly. Is this true? Try it again with these uncommented.
 */
-// works???
-// Actually, I think I'm *not* supposed to
-// require because I'm going to be using webpack
-// for recognizing & bundling specifically the 
-// data / methods from the library which I need for
-// my source code
-const mm = require('@magenta/music');
-const pd = require('probability-distributions');
+
+// const mm = require('@magenta/music');
+// const pd = require('probability-distributions');
 import * as bg from "./buttongrid.js";
 
 
