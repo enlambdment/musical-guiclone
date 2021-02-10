@@ -12,12 +12,16 @@
     "html-webpack-plugin": "^3.2.0",
     "css-loader": "^2.1.1",
     "style-loader": "^0.23.1",
-    "@magenta/music": "^1.21.0"
+    "@magenta/music": "^1.21.0",
+    "probability-distributions": "^0.9.1"
   },
   "engines": {
     "node": "11.x"
   },
   "keywords": [
-    "node", "glitch", "express", "webpack"
+    "node",
+    "glitch",
+    "express",
+    "webpack"
   ]
 }

@@ -1,5 +1,8 @@
-// This statement, for importing from magenta music, still doesn't work.
-// import * as mm from "node_modules/@magenta/music/node/core";
+/* These statements, for importing from 
+   @magenta/music and probability-distributions,
+   still don't work. */
+// import * as mm from '@magenta/music';
+// import * as pd from 'probability-distributions';
 import * as bg from "./buttongrid";
 
 // Also remember to import from css stylesheet (why?)
