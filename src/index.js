@@ -3,6 +3,7 @@
    still don't work. */
 // import * as mm from '@magenta/music';
 // import * as pd from 'probability-distributions';
+const core = require('@magenta/music/node/core');
 import * as bg from "./buttongrid";
 
 // Also remember to import from css stylesheet (why?)
