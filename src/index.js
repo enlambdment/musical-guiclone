@@ -6,7 +6,7 @@
 */
 // This statement, for importing from magenta music, still doesn't work.
 // import * as mm from "node_modules/@magenta/music/node/core";
-import mm from '@magenta/music'
+// import mm from '@magenta/music';
 import * as bg from "./buttongrid";
 
 // Also remember to import from css stylesheet (why?)
