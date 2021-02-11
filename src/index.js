@@ -130,7 +130,7 @@ function play(sq) {
   // merge together copies of adjacent notes so that 
   // instead of each of them sounding, one note of 
   // the total duration sounds.
-  const msq = sequences.mergeConsecutiveNotes(sq);
+  const msq = mm.sequences.mergeConsecutiveNotes(sq);
   /* Set tempo first. Param is in qpm (quarter-note per minute) */
   player.setTempo(100);
   /* elicit the creation of a promise which is either fulfilled, 
