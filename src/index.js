@@ -7,7 +7,7 @@ import * as mm from "@magenta/music";
 // specify in webpack.config.js a loader for CSS files
 import "./app.css";
 
-let player = new SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
+let player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
 
 /* You have to set up the player with a callback object
    before you can use it.
