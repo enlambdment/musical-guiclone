@@ -1,5 +1,5 @@
 
-import * as bg from "./buttongrid";
+import { ButtonGrid } from "./buttongrid.js";
 import * as mm from "@magenta/music";
 
 // Also remember to import from css stylesheet (why?)
@@ -29,7 +29,7 @@ document.querySelector('.playpause-btn').addEventListener('click', playOrPause);
 document.querySelector('.infill-btn').addEventListener('click', infill);
 
 /* Create a grid of buttons: this is the musical GUI */
-const buttonGrid = new bg.ButtonGrid();
+const buttonGrid = new ButtonGrid();
 
 // Load sound fonts.
 // (Will global variables from board.js be in scope here?)
