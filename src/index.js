@@ -1,17 +1,13 @@
-/* These statements, for importing from 
-   @magenta/music and probability-distributions,
-   still don't work. */
-// import * as mm from '@magenta/music';
-// import * as pd from 'probability-distributions';
-// const core = require('@magenta/music/node/core');
+
 import * as bg from "./buttongrid";
+import * as mm from "@magenta/music";
 
 // Also remember to import from css stylesheet (why?)
 // Currently breaking, no idea why because I did 
 // specify in webpack.config.js a loader for CSS files
 import "./app.css";
 
-let player = new SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
+let player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
 
 /* You have to set up the player with a callback object
    before you can use it.
