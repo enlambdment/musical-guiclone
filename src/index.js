@@ -7,7 +7,7 @@ import * as mm from "@magenta/music";
 // specify in webpack.config.js a loader for CSS files
 import "./app.css";
 
-let player = new mm.SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
+let player = new SoundFontPlayer('https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus');
 
 /* You have to set up the player with a callback object
    before you can use it.
@@ -130,7 +130,7 @@ function play(sq) {
   // merge together copies of adjacent notes so that 
   // instead of each of them sounding, one note of 
   // the total duration sounds.
-  const msq = mm.sequences.mergeConsecutiveNotes(sq);
+  const msq = sequences.mergeConsecutiveNotes(sq);
   /* Set tempo first. Param is in qpm (quarter-note per minute) */
   player.setTempo(100);
   /* elicit the creation of a promise which is either fulfilled, 

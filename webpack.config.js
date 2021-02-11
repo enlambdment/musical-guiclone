@@ -29,6 +29,6 @@ module.exports = {
     new HtmlWebpackPlugin({template: './views/index.html'})
   ],
   externals: {
-    '@magenta/music': '@magenta/music'
+    '@magenta/music': 'mm'
   }
 };
