@@ -131,6 +131,8 @@ function play(sq) {
   // merge together copies of adjacent notes so that 
   // instead of each of them sounding, one note of 
   // the total duration sounds.
+  
+  // This isn't working quite like I expected. Why?
   const msq = mm.sequences.mergeConsecutiveNotes(sq);
   /* Set tempo first. Param is in qpm (quarter-note per minute) */
   player.setTempo(100);
@@ -140,12 +142,6 @@ function play(sq) {
   player.start(msq);      
 }
 
-
-  /* This time, I will try to leverage a probability distribution 
-     (e.g. binomial distribution) to direct how far away each 
-     generated harmonizing note will be from the previous one, 
-     in semitone distance.
-  */
 function infill() {
   const bgData = buttonGrid.data;
   const consonances = [0,3,4,7,8,9];
@@ -160,16 +156,9 @@ function infill() {
     // index to pitch (= MAX_PITCH - index)
     pitchesPerTime.push(onIdxs.map(idx => buttonGrid.max_pitch - idx));
   }
-  // DEBUG
-  console.log("pitches per time:");
-  console.log(pitchesPerTime);
   
   let allPitches = Array(buttonGrid.grid_height).fill(buttonGrid.max_pitch).map((x,y) => x-y);
-  
-  //DEBUG 
-  console.log("all pitches:");
-  console.log(allPitches);
-  
+    
   let infillPitches = [];
   for (let i = 0; i < buttonGrid.grid_width; i++) {
     // get ith array in pitchesPerTimes
@@ -188,9 +177,6 @@ function infill() {
         infillPitches.push(randPitch);
     };
   };
-  // DEBUG
-  console.log("infilled pitches:");
-  console.log(infillPitches);
   
   for (let entry of infillPitches.entries()) {
     // use MAX_PITCH - entry[1], entry[0];
@@ -205,9 +191,8 @@ function infill2() {
   const bgData = buttonGrid.data;
   const consonances = [0,3,4,7,8,9];
   let pitchesPerTime = [];
-  
-  let di;
-  for (let i = 0; i < buttonGrid.grid_width; i += di) {
+
+  for (let i = 0; i < buttonGrid.grid_width; i++) {
     // get all possible row indices
     const rowIdxs = Array(buttonGrid.grid_height).fill(0).map((x,y) => x+y);
     // take only the row indices for which the cell at that row index,
@@ -222,7 +207,8 @@ function infill2() {
   
   // Revise logic from here through rest of function body.  
   let infillPitches = [];
-  for (let i = 0; i < buttonGrid.grid_width; i++) {
+  let di;
+  for (let i = 0; i < buttonGrid.grid_width; i += di) {
     // start keeping track of a consonantPitch.
     // Eventually, we want for the distance of every pitch
     // from the one which it follows to be governed by a 
@@ -267,14 +253,20 @@ function infill2() {
     
     // randomly sample a duration for generated consonant-pitch
     di = pd.sample([1,2,3], 1, true, [0.25, 0.5, 0.25])[0];
+    
+    // DEBUG
     console.log("Generating random duration: ", di);
     
     let consonantPitchFill = Array(di).fill(consonantPitch);
     infillPitches.push(...consonantPitchFill);
+    
+    // DEBUG
+    console.log("Current value of infill_pitches: ", infillPitches);
   };
   
   // pare down infillPitches to appropriate size.
-  infillPitches = infillPitches.slice(buttonGrid.grid_width);
+  infillPitches = infillPitches.slice(0, buttonGrid.grid_width);
+  
   // DEBUG
   console.log(infillPitches);
   
