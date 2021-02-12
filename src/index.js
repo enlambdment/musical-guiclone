@@ -197,16 +197,55 @@ function infill() {
   return infillPitches;
 }
 
+/* We leverage the binomialDistribution method from 
+    'simple-statistics' in order to produce a method that
+    we can use for create bimodal distributions.
+    We want to use this to model the general character of 
+    melodic progression from one sustained tone to the next;
+    large leaps in general should become vanishingly rare, but
+    we also want to disfavor relative melodic stasis (the melody
+    staying put or moving only slightly)
+*/
+function genBimodalBinomial(n, p) {
+    // 1. Generate array skewed towards one side
+    const binomArray = ss.binomialDistribution(n, p);
+
+    // 2. Pad it out to recover a full-length array
+    const binArrMin = Math.min(...binomArray);
+    const binArrTail = Array(n - binomArray.length).fill(binArrMin);
+    //    e.g. for p = 0.2 < 0.5, binomArray is left-skewed
+    if (p < 0.5) {
+        binomArray.push(...binArrTail);
+    } else {
+        binomArray.unshift(...binArrTail);
+    };
+
+    // 3. Generate its "opposite" so that we can convolve the two together
+    const oppArray = binomArray.slice().reverse();
+
+    const arrayConv = binomArray.map(
+        (e, i) => e * oppArray[i]);
+
+    // 4. Renormalize
+    const convDenom = arrayConv.reduce(
+        (a, b) => a + b);
+
+    const bimodBinom = arrayConv.map(
+        e => e / convDenom);
+        
+    return bimodBinom;
+};
+
 function getNextConsonantPitch(currentConsP, availConsPs) {
   // case of no currentConsP assigned yet
   if ( !(currentConsP) ) {
     return randArrayItem(availConsPs);
   } else {
-    // Instead of trying to locate the indices whose elements are 
-    // nearest to currentConsP, just filter down from availConsPs
-    // so that you get everything at / within a certain radius,
-    // then fit your binomial distribution based upon the resulting
-    // subarray!
+    // 1.
+    
+    // 2. 
+    
+    // 3.
   }
 }
 
