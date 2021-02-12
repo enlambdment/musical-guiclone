@@ -27,7 +27,7 @@ document.querySelector('.playpause-btn').addEventListener('click', playOrPause);
 // When infill button is clicked, elicit the process which 
 // fills in some additional musical material to the board
 // (either via pre-trained model or some other generation logic.)
-document.querySelector('.infill-btn').addEventListener('click', infill);
+document.querySelector('.infill-btn').addEventListener('click', infill2); // <- try infill2 to see if it works
 
 /* Create a grid of buttons: this is the musical GUI */
 const buttonGrid = new ButtonGrid();
@@ -252,9 +252,19 @@ function infill2() {
         // infillPitches.push(randPitch);
     };
     
+  /* Later, each iteration of the above for-loop is going to give rise to
+      a consonantPitchFill of form 'Array(<length>).fill(<value>)' that we
+      want to concat to the end of infillPitches to build it up, rather than
+      pushing single items at a time.
+      HOWEVER - need to make sure don't result in infillPitches being too long,
+      or else just don't use the 'extra' ones.
+  */
+    /
+    let dj = PD.sample
     infillPitches.push(consonantPitch);
   };
   
+
   for (let entry of infillPitches.entries()) {
     // use MAX_PITCH - entry[1], entry[0];
     buttonGrid.toggleCell(buttonGrid.max_pitch - entry[1], entry[0], 2);
