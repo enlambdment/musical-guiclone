@@ -280,83 +280,41 @@ function infill2() {
     pitchesPerTime.push(onIdxs.map(idx => buttonGrid.max_pitch - idx));
   }
   
-  let allPitches = Array(buttonGrid.grid_height).fill(buttonGrid.max_pitch).map((x,y) => x-y);
+  let allPitches = Array(buttonGrid.grid_height)
+    .fill(buttonGrid.max_pitch)
+    .map((x,y) => x-y);
   
   // Revise logic from here through rest of function body.  
   let infillPitches = [];
   let di;
   for (let i = 0; i < buttonGrid.grid_width; i += di) {
     // start keeping track of a consonantPitch.
-    // Eventually, we want for the distance of every pitch
-    // from the one which it follows to be governed by a 
-    // probability distribution (e.g. binomial dist, etc.)
     let consonantPitch;
     
     // get ith array in pitchesPerTime
     let currentPitches = pitchesPerTime[i];
     // is it empty?
     if (currentPitches.length === 0) {
-        // if consonantPitch has been assigned from a previous
-        // for-loop iteration, then use binomial distribution to control
-        // separation of next from current value.
-        // Otherwise, just pick randomly from allPitches.
-      
-      /* REFACTOR:
-          Write a function, of type signature roughly
-            function getNextConsonantPitch(consonantPitch: int, availablePitches: [int]) { ... }
-          that can take care of the activity described above.
-          Then, *use this* in the body of infill2.
-      */
-      
-        // if so, just get a random pitch
-        let randPitch = randArrayItem(allPitches);
-        consonantPitch = randPitch;
+      let randPitch = getNextConsonantPitch(consonantPitch, allPitches);
+      consonantPitch = randPitch;
     } else {
-        // if not empty, harmonize with the lowest pitch from currentPitches
-        let bassPitch = Math.min(...currentPitches);
-        let consonantPitches = allPitches.filter(
-            p => consonances.includes(Math.abs(p - bassPitch) % 12));
-        /* Later we're going to need to know the distance of current 
-            consonantPitch value both from the Math.max and the Math.min
-            of the resulting consonantPitches.
-            This is so that we can be sure our randomly selected consonant 
-            pitch won't lie outside of the range of all possible values that
-            we can use on our GUI grid.
-        */
-        let randPitch = randArrayItem(consonantPitches);
-        consonantPitch = randPitch;
-        // infillPitches.push(randPitch);
+      // if not empty, harmonize with the lowest pitch from currentPitches
+      let bassPitch = Math.min(...currentPitches);
+      let consonantPitches = allPitches.filter(
+          p => consonances.includes(Math.abs(p - bassPitch) % 12));
+      let randPitch = getNextConsonantPitch(consonantPitch, consonantPitches);
+      consonantPitch = randPitch;
     };
-    
-    // DEBUG
-    console.log("Generating random pitch: ", consonantPitch);
-    
-    /* Later, each iteration of the above for-loop is going to give rise to
-        a consonantPitchFill of form 'Array(<length>).fill(<value>)' that we
-        want to concat to the end of infillPitches to build it up, rather than
-        pushing single items at a time.
-        HOWEVER - need to make sure don't result in infillPitches being too long,
-        or else just don't use the 'extra' ones.
-    */
-    
+            
     // randomly sample a duration for generated consonant-pitch
     di = pd.sample([1,2,3], 1, true, [0.25, 0.5, 0.25])[0];
-    
-    // DEBUG
-    console.log("Generating random duration: ", di);
-    
+        
     let consonantPitchFill = Array(di).fill(consonantPitch);
     infillPitches.push(...consonantPitchFill);
-    
-    // DEBUG
-    console.log("Current value of infill_pitches: ", infillPitches);
   };
   
   // pare down infillPitches to appropriate size.
   infillPitches = infillPitches.slice(0, buttonGrid.grid_width);
-  
-  // DEBUG
-  console.log(infillPitches);
   
   for (let entry of infillPitches.entries()) {
     // use MAX_PITCH - entry[1], entry[0];
