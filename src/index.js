@@ -205,7 +205,9 @@ function infill2() {
   const bgData = buttonGrid.data;
   const consonances = [0,3,4,7,8,9];
   let pitchesPerTime = [];
-  for (let i = 0; i < buttonGrid.grid_width; i++) {
+  
+  let di;
+  for (let i = 0; i < buttonGrid.grid_width; i += di) {
     // get all possible row indices
     const rowIdxs = Array(buttonGrid.grid_height).fill(0).map((x,y) => x+y);
     // take only the row indices for which the cell at that row index,
@@ -259,12 +261,16 @@ function infill2() {
       HOWEVER - need to make sure don't result in infillPitches being too long,
       or else just don't use the 'extra' ones.
   */
-    /
-    let dj = PD.sample
-    infillPitches.push(consonantPitch);
+    
+    // randomly sample a duration for generated consonant-pitch
+    let di = pd.sample([1,2,3], 1, true, [0.25, 0.5, 0.25])[0];
+    let consonantPitchFill = Array(di).fill(consonantPitch);
+    infillPitches.push(...consonantPitchFill);
   };
   
-
+  // pare down infillPitches to appropriate size.
+  infillPitches = infillPitches.slice(buttonGrid.grid_width);
+  
   for (let entry of infillPitches.entries()) {
     // use MAX_PITCH - entry[1], entry[0];
     buttonGrid.toggleCell(buttonGrid.max_pitch - entry[1], entry[0], 2);
