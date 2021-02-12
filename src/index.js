@@ -241,13 +241,27 @@ function getNextConsonantPitch(currentConsP, availConsPs) {
   if ( !(currentConsP) ) {
     return randArrayItem(availConsPs);
   } else {
-    // 1.
+    // 1. filter down availConsPs to just those tones within
+    //     a certain radius of currentConsP.
+    //     We'll choose 15 semitones (octave + perfect 4th)
+    let eleventhRadius = availConsPs.filter(
+      p => Math.abs(p - currentConsP) <= 15);
     
-    // 2. 
+    // 2. obtain a bimodal distribution whose shape is based 
+    //     upon the length of eleventhRadius
+    let radBimodArr = genBimodalBinomial(
+      eleventhRadius.length, 0.1);
     
-    // 3.
+    // 3. sample an element from eleventhRadius based upon 
+    //     the frequency weights provided by radBimodArr.
+    //     Be careful because 
+    //       radBimodArr.length == eleventhRadius.length + 1
+    let nextConsP = pd.sample(
+      eleventhRadius, 1, true, radBimodArr.slice(0, eleventhRadius.length));
+    
+    return nextConsP;
   }
-}
+};
 
 // infill function, take #2
 function infill2() {
