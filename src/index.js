@@ -254,22 +254,29 @@ function infill2() {
         // infillPitches.push(randPitch);
     };
     
-  /* Later, each iteration of the above for-loop is going to give rise to
-      a consonantPitchFill of form 'Array(<length>).fill(<value>)' that we
-      want to concat to the end of infillPitches to build it up, rather than
-      pushing single items at a time.
-      HOWEVER - need to make sure don't result in infillPitches being too long,
-      or else just don't use the 'extra' ones.
-  */
+    // DEBUG
+    console.log("Generating random pitch: ", consonantPitch);
+    
+    /* Later, each iteration of the above for-loop is going to give rise to
+        a consonantPitchFill of form 'Array(<length>).fill(<value>)' that we
+        want to concat to the end of infillPitches to build it up, rather than
+        pushing single items at a time.
+        HOWEVER - need to make sure don't result in infillPitches being too long,
+        or else just don't use the 'extra' ones.
+    */
     
     // randomly sample a duration for generated consonant-pitch
-    let di = pd.sample([1,2,3], 1, true, [0.25, 0.5, 0.25])[0];
+    di = pd.sample([1,2,3], 1, true, [0.25, 0.5, 0.25])[0];
+    console.log("Generating random duration: ", di);
+    
     let consonantPitchFill = Array(di).fill(consonantPitch);
     infillPitches.push(...consonantPitchFill);
   };
   
   // pare down infillPitches to appropriate size.
   infillPitches = infillPitches.slice(buttonGrid.grid_width);
+  // DEBUG
+  console.log(infillPitches);
   
   for (let entry of infillPitches.entries()) {
     // use MAX_PITCH - entry[1], entry[0];
