@@ -186,6 +186,18 @@ function infill() {
   return infillPitches;
 }
 
+function getNextConsonantPitch(currentConsP, availConsPs) {
+  // case of no currentConsP assigned yet
+  if ( !(currentConsP) ) {
+    return randArrayItem(availConsPs);
+  } else {
+    // NEED: to find the indices of the array items 
+    // immediately below / above currentConsP - i.e.
+    // i, j s.t. availConsP[i] <= currentConsP < availConsP[j] - 
+    // How to do this??
+  }
+}
+
 // infill function, take #2
 function infill2() {
   const bgData = buttonGrid.data;
@@ -219,10 +231,21 @@ function infill2() {
     let currentPitches = pitchesPerTime[i];
     // is it empty?
     if (currentPitches.length === 0) {
+        // if consonantPitch has been assigned from a previous
+        // for-loop iteration, then use binomial distribution to control
+        // separation of next from current value.
+        // Otherwise, just pick randomly from allPitches.
+      
+      /* REFACTOR:
+          Write a function, of type signature roughly
+            function getNextConsonantPitch(consonantPitch: int, availablePitches: [int]) { ... }
+          that can take care of the activity described above.
+          Then, *use this* in the body of infill2.
+      */
+      
         // if so, just get a random pitch
         let randPitch = randArrayItem(allPitches);
         consonantPitch = randPitch;
-        // infillPitches.push(randPitch);
     } else {
         // if not empty, harmonize with the lowest pitch from currentPitches
         let bassPitch = Math.min(...currentPitches);
