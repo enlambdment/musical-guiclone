@@ -218,31 +218,42 @@ function infill2() {
   
   let allPitches = Array(buttonGrid.grid_height).fill(buttonGrid.max_pitch).map((x,y) => x-y);
   
-  //DEBUG 
-  console.log("all pitches:");
-  console.log(allPitches);
-  
+  // Revise logic from here through rest of function body.  
   let infillPitches = [];
   for (let i = 0; i < buttonGrid.grid_width; i++) {
-    // get ith array in pitchesPerTimes
+    // start keeping track of a consonantPitch.
+    // Eventually, we want for the distance of every pitch
+    // from the one which it follows to be governed by a 
+    // probability distribution (e.g. binomial dist, etc.)
+    let consonantPitch;
+    
+    // get ith array in pitchesPerTime
     let currentPitches = pitchesPerTime[i];
     // is it empty?
     if (currentPitches.length === 0) {
         // if so, just get a random pitch
         let randPitch = randArrayItem(allPitches);
-        infillPitches.push(randPitch);
+        consonantPitch = randPitch;
+        // infillPitches.push(randPitch);
     } else {
-        // if not empty, harmonize with a pitch from currentPitches
-        let basePitch = randArrayItem(currentPitches); 
+        // if not empty, harmonize with the lowest pitch from currentPitches
+        let bassPitch = Math.min(...currentPitches);
         let consonantPitches = allPitches.filter(
-            p => consonances.includes(Math.abs(p - basePitch) % 12));
+            p => consonances.includes(Math.abs(p - bassPitch) % 12));
+        /* Later we're going to need to know the distance of current 
+            consonantPitch value both from the Math.max and the Math.min
+            of the resulting consonantPitches.
+            This is so that we can be sure our randomly selected consonant 
+            pitch won't lie outside of the range of all possible values that
+            we can use on our GUI grid.
+        */
         let randPitch = randArrayItem(consonantPitches);
-        infillPitches.push(randPitch);
+        consonantPitch = randPitch;
+        // infillPitches.push(randPitch);
     };
+    
+    infillPitches.push(consonantPitch);
   };
-  // DEBUG
-  console.log("infilled pitches:");
-  console.log(infillPitches);
   
   for (let entry of infillPitches.entries()) {
     // use MAX_PITCH - entry[1], entry[0];
