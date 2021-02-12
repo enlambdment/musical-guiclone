@@ -1,8 +1,18 @@
 
 import { ButtonGrid } from "./buttongrid.js";
 import * as mm from "@magenta/music";
+
+/* I am needing to import 2 libraries that relate 
+    to probability - probability-distributions for 
+    sampling from a distribution at random based
+    upon an array of weights, vs. simple-statistics 
+    for obtaining an array of weights representing
+    such a distribution. 
+  This is infelicitious, but AFAICT neither 
+    library does both.
+*/
 import * as pd from "probability-distributions";
-import { }
+import * as ss from "simple-statistics";
 
 // Also remember to import from css stylesheet (why?)
 // Currently breaking, no idea why because I did 
