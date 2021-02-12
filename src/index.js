@@ -139,6 +139,12 @@ function play(sq) {
   player.start(msq);      
 }
 
+
+  /* This time, I will try to leverage a probability distribution 
+     (e.g. binomial distribution) to direct how far away each 
+     generated harmonizing note will be from the previous one, 
+     in semitone distance.
+  */
 function infill() {
   const bgData = buttonGrid.data;
   const consonances = [0,3,4,7,8,9];
@@ -195,9 +201,52 @@ function infill() {
 
 // infill function, take #2
 function infill2() {
-  /* This time, I will try to leverage a probability distribution 
-     (e.g. binomial distribution) to direct how far away each 
-     generated harmonizing note will be from the previous one, 
-     in semitone distance.
-  */
+  const bgData = buttonGrid.data;
+  const consonances = [0,3,4,7,8,9];
+  let pitchesPerTime = [];
+  for (let i = 0; i < buttonGrid.grid_width; i++) {
+    // get all possible row indices
+    const rowIdxs = Array(buttonGrid.grid_height).fill(0).map((x,y) => x+y);
+    // take only the row indices for which the cell at that row index,
+    // and col index: i, is active by user (.on === 1)
+    const onIdxs = rowIdxs.filter(idx => bgData[idx][i].on === 1);
+    // before pushing onto pitchesPerTime, we should convert from
+    // index to pitch (= MAX_PITCH - index)
+    pitchesPerTime.push(onIdxs.map(idx => buttonGrid.max_pitch - idx));
+  }
+  
+  let allPitches = Array(buttonGrid.grid_height).fill(buttonGrid.max_pitch).map((x,y) => x-y);
+  
+  //DEBUG 
+  console.log("all pitches:");
+  console.log(allPitches);
+  
+  let infillPitches = [];
+  for (let i = 0; i < buttonGrid.grid_width; i++) {
+    // get ith array in pitchesPerTimes
+    let currentPitches = pitchesPerTime[i];
+    // is it empty?
+    if (currentPitches.length === 0) {
+        // if so, just get a random pitch
+        let randPitch = randArrayItem(allPitches);
+        infillPitches.push(randPitch);
+    } else {
+        // if not empty, harmonize with a pitch from currentPitches
+        let basePitch = randArrayItem(currentPitches); 
+        let consonantPitches = allPitches.filter(
+            p => consonances.includes(Math.abs(p - basePitch) % 12));
+        let randPitch = randArrayItem(consonantPitches);
+        infillPitches.push(randPitch);
+    };
+  };
+  // DEBUG
+  console.log("infilled pitches:");
+  console.log(infillPitches);
+  
+  for (let entry of infillPitches.entries()) {
+    // use MAX_PITCH - entry[1], entry[0];
+    buttonGrid.toggleCell(buttonGrid.max_pitch - entry[1], entry[0], 2);
+  };
+  
+  return infillPitches;
 }
