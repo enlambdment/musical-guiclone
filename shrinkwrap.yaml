@@ -4,6 +4,7 @@ dependencies:
   express: 4.17.1
   html-webpack-plugin: 3.2.0
   probability-distributions: 0.9.1
+  simple-statistics: 7.4.0
   style-loader: 0.23.1
   webpack: 4.46.0
   webpack-cli: 3.3.12
@@ -3651,6 +3652,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-2kL0l0DAtC2yypcoVxyxkMmO/qM=
+  /simple-statistics/7.4.0:
+    dev: false
+    resolution:
+      integrity: sha512-1mXlR6NEIwMsKWjD+exMd4vvRWmrrBk+MT1n3O5NBjbxjIh1E1YlQikwyNdQjPcq8E+EgUkFmj67gr2bfAIwGg==
   /snapdragon-node/2.1.1:
     dependencies:
       define-property: 1.0.0
@@ -4537,6 +4542,7 @@ specifiers:
   express: ^4.16.4
   html-webpack-plugin: ^3.2.0
   probability-distributions: ^0.9.1
+  simple-statistics: ^7.3.2
   style-loader: ^0.23.1
   webpack: ^4.30.0
   webpack-cli: ^3.3.1
