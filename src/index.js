@@ -191,10 +191,11 @@ function getNextConsonantPitch(currentConsP, availConsPs) {
   if ( !(currentConsP) ) {
     return randArrayItem(availConsPs);
   } else {
-    // NEED: to find the indices of the array items 
-    // immediately below / above currentConsP - i.e.
-    // i, j s.t. availConsP[i] <= currentConsP < availConsP[j] - 
-    // How to do this??
+    // Instead of trying to locate the indices whose elements are 
+    // nearest to currentConsP, just filter down from availConsPs
+    // so that you get everything at / within a certain radius,
+    // then fit your binomial distribution based upon the resulting
+    // subarray!
   }
 }
 
