@@ -1,4 +1,4 @@
-# musical-guiclone====
+# musical-guiclone
 
 [coucou](https://coconet.glitch.me/#) is a website which describes and provides access to 
 experimentation with a neural network trained to provide completions of four-part harmofor melodic material that the user provides, via a clickable grid of buttons which the GUI exposes.
@@ -10,6 +10,13 @@ The main objectives of this project were to:
 * experiment with different solutions for bringing in 3rd-party libraries as dependencies
 
 ## Essential functionality of the musical GUI
+
+The main website element through which a user is able to interact with the pre-trained model
+(loaded in coucou's `script.js`) is a 2-dimensional grid of buttons, where the height dimension
+indicates pitch and the width dimension indicates time. 
+
+I worked backwards from this, and the `board.js` file which includes the definition for `Board` class,
+
 
 ## Basic infill for two-part harmony completion
 
