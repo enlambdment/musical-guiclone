@@ -36,10 +36,12 @@ As well, the `ButtonGrid` class has the following methods:
     representing the current board state
 * `updateHash()` for updating the hash that is included in the site URL upon changes to the state
   of any buttons
-* `updateButton(btn, btnState)` as well as HTML elements are updated the latter for modifying element classes 
-  so that different styling can be applied)
-* `loadHash(s)` 
-* `getNoteSequence()`
+* `updateButton(btn, btnState)` for updating the HTML elements in tandem with changes to the board 
+  state induced by user interactions or infilling, so that different styling will be applied to off 
+  vs. clicked vs. infilled positions on the GUI
+* `loadHash(s)` for parsing a hash into a `NoteSequence` object, for audio synthesis in browser 
+  via the `magenta/music` library 
+* `getNoteSequence()` 
 
 ## Basic infill for two-part harmony completion
 
