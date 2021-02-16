@@ -64,8 +64,14 @@ The bimodal distribution was made "by hand", by multiplying two left-skewed bino
 (in order for the sum over all possible outcomes to equal 1.) 
 
 By sampling from such a distribution, which is built so as to have a low frequency of sampling the note at the 
-middle of the within-radius range (while having greatest frequency of sampling those notes which )
+middle of the within-radius range (while having greatest frequency of sampling those notes which lie at a modest
+distance from said center of the range), the two principles of melodic motion indicated above could be modelled 
+in a simplified manner. At the same time, actually finding JS libraries from which to import the necessary frequency-distribution
+and weighted-sampling behavior led to the challenge of how to mediate between different possible module syntax conventions.
 
 ## Bringing in 3rd-party libraries
 
+While exploring available JS libraries via npm, I prioritized lightweight, easy-to-understand libraries in my search.
+Eventually I came to realize that `probability-distributions` included a method for sampling from a given array of 
+choices with an optional parameter for providing an array of "weights" (*i.e.* different frequencies per outcome), 
 
