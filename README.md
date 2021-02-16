@@ -1,5 +1,7 @@
 # musical-guiclone
 
+*Created using [Glitch](https://glitch.com/edit/#!/musical-guiclone?path=README.md%3A1%3A0)*
+
 [coucou](https://coconet.glitch.me/#) is a website which describes and provides access to 
 experimentation with a neural network trained to provide completions of four-part harmofor melodic material that the user provides, via a clickable grid of buttons which the GUI exposes.
 
