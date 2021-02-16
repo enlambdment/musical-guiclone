@@ -32,12 +32,13 @@ This resulted in the definition of a class, `ButtonGrid`, with the following att
 As well, the `ButtonGrid` class has the following methods:
 * `toggleCell(i, j, flag)` for flipping the state of user-clicked buttons between on vs. off, 
   as well as for updating the state of infilled buttons when the infill method is invoked
-  - `ButtonGrid` instance attributes as well as HTML elements are updated (the former for the sake of
-    representing )
+  - all updates are performed inside the `ButtonGrid` instance attributes, for the sake of 
+    representing the current board state
 * `updateHash()` for updating the hash that is included in the site URL upon changes to the state
   of any buttons
-* `updateButton(btn, btnState)`
-* `loadHash(s)`
+* `updateButton(btn, btnState)` as well as HTML elements are updated the latter for modifying element classes 
+  so that different styling can be applied)
+* `loadHash(s)` 
 * `getNoteSequence()`
 
 ## Basic infill for two-part harmony completion
