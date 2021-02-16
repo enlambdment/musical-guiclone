@@ -242,37 +242,37 @@ class ButtonGrid {
     }
   }
   
-  // Accepts a serialized board state and produces from it
-  // a NoteSequence which Magenta.js will be able to work with
-  // for audio synthesis / manipulation with music models.
-  /* (I think the idea here is to receive, as a result of 
-      some pre-trained model's generation, a revised score
-      serialization that then has to be fed back into the
-      DOM grid and the JS this.data, updating both.)
-  */
-  loadHash(s) {
-    const steps = s.split(',');
-    const notes = [];
-    for (let i = 0; i < steps.length; i++) {
-      const pair = steps[i].split(':');
-      // build up the 'notes' value for the
-      // NoteSequence that we will build
-      notes.push(
-        {pitch: parseInt(pair[0]),
-        // no 'instrument' applicable bc. no voice part 
-         quantizedStartStep: parseInt(pair[1]),
-         quantizedEndStep: parseInt(pair[1]) + 1});
-    }
-    // now a NoteSequence is built for Magenta.js to use
-    const ns = {};
-    ns.notes = notes;
-    ns.quantizationInfo = {'stepsPerQuarter':4};
-    ns.totalQuantizedSteps = GRID_WIDTH;
+//   // Accepts a serialized board state and produces from it
+//   // a NoteSequence which Magenta.js will be able to work with
+//   // for audio synthesis / manipulation with music models.
+//   /* (I think the idea here is to receive, as a result of 
+//       some pre-trained model's generation, a revised score
+//       serialization that then has to be fed back into the
+//       DOM grid and the JS this.data, updating both.)
+//   */
+//   loadHash(s) {
+//     const steps = s.split(',');
+//     const notes = [];
+//     for (let i = 0; i < steps.length; i++) {
+//       const pair = steps[i].split(':');
+//       // build up the 'notes' value for the
+//       // NoteSequence that we will build
+//       notes.push(
+//         {pitch: parseInt(pair[0]),
+//         // no 'instrument' applicable bc. no voice part 
+//          quantizedStartStep: parseInt(pair[1]),
+//          quantizedEndStep: parseInt(pair[1]) + 1});
+//     }
+//     // now a NoteSequence is built for Magenta.js to use
+//     const ns = {};
+//     ns.notes = notes;
+//     ns.quantizationInfo = {'stepsPerQuarter':4};
+//     ns.totalQuantizedSteps = GRID_WIDTH;
     
-    // Omit until I know what this does, or why
-    // it calls 'updateHash'
-    // this.drawNoteSequence(ns); // <- ? 
-  }
+//     // Omit until I know what this does, or why
+//     // it calls 'updateHash'
+//     // this.drawNoteSequence(ns); // <- ? 
+//   }
   
   // Obtain NoteSequence from the JS ButtonGrid object's data.
   getNoteSequence() { 

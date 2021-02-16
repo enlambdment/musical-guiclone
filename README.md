@@ -29,7 +29,7 @@ This resulted in the definition of a class, `ButtonGrid`, with the following att
   `buttongrid.js` module, and which indicate the width of the grid, the height of the grid, and the 
   pitch to which the top row of the button grid corresponds, respectively.
   
-As well, the `ButtonGrid` class has the following methods:
+As well, the `ButtonGrid` class includes the following methods:
 * `toggleCell(i, j, flag)` for flipping the state of user-clicked buttons between on vs. off, 
   as well as for updating the state of infilled buttons when the infill method is invoked
   - all updates are performed inside the `ButtonGrid` instance attributes, for the sake of 
@@ -39,8 +39,6 @@ As well, the `ButtonGrid` class has the following methods:
 * `updateButton(btn, btnState)` for updating the HTML elements in tandem with changes to the board 
   state induced by user interactions or infilling, so that different styling will be applied to off 
   vs. clicked vs. infilled positions on the GUI
-* `loadHash(s)` for parsing a hash into a `NoteSequence` object, for audio synthesis in browser 
-  via the `magenta/music` library 
 * `getNoteSequence()`, for obtaining a note sequence from the current board state
 
 These methods are employed by the `index.js` for providing interactivity with an HTML button grid representing
