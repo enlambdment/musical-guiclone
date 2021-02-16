@@ -93,4 +93,21 @@ another advantage to this approach is that the webpack bundling process results 
 for the task at hand (rather than bringing the 3rd-party libraries in memory in their entirety.)
 
 The one exception to this approach was made with respect to handling the `@magenta/music` dependency, in use here for its `NoteSequence` 
-class and in-browser audio synthesis functionality. 
+class and in-browser audio synthesis functionality. In order to avoid an excessively long build step, I avoided directing webpack to traverse 
+this library's modules for building the dependency graph, by specifying the following in `webpack.config.js`:
+
+```
+module.exports = {
+  ...
+  externals: {
+    '@magenta/music': 'mm'
+  }
+  ...
+}
+```
+
+This defers retrieval of any functionality due to the `@magenta/music` library to runtime, thereby excluding
+any of this functionality from the bundling step. At the same time, including a `script` tag referencing a CDN 
+location for this source code, in the site HTML, furnishes a location for these to be retrieved then. Note the key-value
+pair `'@magenta/music': 'mm'`, which is a direction for any JS modules to locate imports from the module called `@magenta/music`
+by getting these from the global variable `mm`, which is the variable that the top-level module of this library exposes upon loading.
