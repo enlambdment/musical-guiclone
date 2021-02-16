@@ -88,4 +88,9 @@ For the purpose of mediating between the different possible choices for JS modul
 vs. the need for the final JS code to be usable with the standard JS runtime available via most browsers, I chose webpack for its ability
 to build out a dependency graph starting from JS module(s) as entry point, and traversing the 3rd-party libraries in order to locate the 
 methods leveraged from these, including them in the final JS bundle. The modules in question were downloaded from `npm` and the 
-`package.json` was kept updated to reflect these dependencies. 
+`package.json` was kept updated to reflect these dependencies. Apart from obviating the need to wrangle directly with variants of module syntax,
+another advantage to this approach is that the webpack bundling process results in final code which employs only the functionality strictly required
+for the task at hand (rather than bringing the 3rd-party libraries in memory in their entirety.)
+
+The one exception to this approach was made with respect to handling the `@magenta/music` dependency, in use here for its `NoteSequence` 
+class and in-browser audio synthesis functionality. 
