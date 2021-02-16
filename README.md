@@ -15,8 +15,13 @@ The main website element through which a user is able to interact with the pre-t
 (loaded in coucou's `script.js`) is a 2-dimensional grid of buttons, where the height dimension
 indicates pitch and the width dimension indicates time. 
 
-I worked backwards from this, and the `board.js` file which includes the definition for `Board` class,
+I worked backwards from the `board.js` file which includes the definition for `Board` class,
+in order to identify the essential aspects of the implementation for the sake of entering 
+melodic material, playing it back, keeping track of user-input vs. infilled material, and serializing
+the current board contents into a form usable in the site URL. 
 
+This resulted in the definition of a class, `ButtonGrid`, with the following attributes:
+* `data`, for storing the status of each square in the grid as a 
 
 ## Basic infill for two-part harmony completion
 
