@@ -21,7 +21,24 @@ melodic material, playing it back, keeping track of user-input vs. infilled mate
 the current board contents into a form usable in the site URL. 
 
 This resulted in the definition of a class, `ButtonGrid`, with the following attributes:
-* `data`, for storing the status of each square in the grid as a 
+* `data`, for storing the status of each square in the grid as a JSON object tracking an 
+  `on` property (0 if off, 1 if clicked by user, and 2 if infilled by harmonizing logic.)
+* `ui`, for storing a reference to the `id: container` div which is populated with rows of buttons
+  upon initialization of a `ButtonGrid` instance (which calls the `reset()` method.)
+* `grid_width`, `grid_height`, and `max_pitch`, which obtain values from global variables in the 
+  `buttongrid.js` module, and which indicate the width of the grid, the height of the grid, and the 
+  pitch to which the top row of the button grid corresponds, respectively.
+  
+As well, the `ButtonGrid` class has the following methods:
+* `toggleCell(i, j, flag)` for flipping the state of user-clicked buttons between on vs. off, 
+  as well as for updating the state of infilled buttons when the infill method is invoked
+  - `ButtonGrid` instance attributes as well as HTML elements are updated (the former for the sake of
+    representing )
+* `updateHash()` for updating the hash that is included in the site URL upon changes to the state
+  of any buttons
+* `updateButton(btn, btnState)`
+* `loadHash(s)`
+* `getNoteSequence()`
 
 ## Basic infill for two-part harmony completion
 
