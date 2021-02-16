@@ -53,7 +53,18 @@ model of musical motion (from one note in the musical infill to the next) implem
 
 * because we do not want the resulting line to be excessively static, we want to reduce any tendency
   for the next note to sound the same pitch as the current note, at each iteration 
-* at the same time, the maximum possible size (measured in semitones) of an interval for the melodi
+* at the same time, the maximum possible size (measured in semitones) of an interval for the melody to
+  leap from one note to the next should be reasonably limited, *e.g.* not larger than 15 semitones
+  (size of an octave + a perfect fourth).
+  
+Therefore, the auxiliary function `getNextConsonantPitch(currentConsP, availConsP)` was defined in order
+to perform the selection (from `availConsP`) of a subsequent pitch to follow `currentConsP` by sampling from
+a bimodal distribution over all pitches in `availConsP` within that 15-semitone distance from `currentConsP`.
+The bimodal distribution was made "by hand", by multiplying two left-skewed binomial distributions then renormalizing
+(in order for the sum over all possible outcomes to equal 1.) 
+
+By sampling from such a distribution, which is built so as to have a low frequency of sampling the note at the 
+middle of the within-radius range (while having greatest frequency of sampling those notes which )
 
 ## Bringing in 3rd-party libraries
 

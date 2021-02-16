@@ -93,10 +93,6 @@ function clickCell(event) {
     const col = parseInt(tgt.dataset.col);
     const pitch = parseInt(tgt.dataset.pitch);
     
-    /* IDEA: Try to direct the user to only create a single melody,
-    
-    */
-    
     // 2. toggle the cell at this position, so we can know the updated
     //    cell state.
     // ADD NEW PARAM to toggleCell to distinguish
