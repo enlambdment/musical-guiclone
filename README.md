@@ -43,10 +43,13 @@ As well, the `ButtonGrid` class has the following methods:
   via the `magenta/music` library 
 * `getNoteSequence()`, for obtaining a note sequence from the current board state
 
-These methods are employed by the `index.js` for providing interactivity with a button grid representing
-
+These methods are employed by the `index.js` for providing interactivity with an HTML button grid representing
+a `ButtonGrid` instance, audio synthesis based upon the current board state for playback upon request, and infilling 
+to harmonize the current melody based upon a probabilistic method.
 
 ## Basic infill for two-part harmony completion
+
+The `infill2()` method 
 
 ## Bringing in 3rd-party libraries
 
