@@ -3,18 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>Button experiment</title>
-    <!-- Does this fix bug that webpack tells me
-          I don't have any loader to support CSS
-          file type, even though I specified it in
-          webpack.config.js module.rules? -->
-    <!-- link rel="stylesheet" href="style.css" -->
   </head>
   
   <body>
     <!-- Retrieve at runtime: include this library via webpack.config.js 'externals' option.  -->
 <!-- This doesn't work if I put it at the end of the body element because then dist/main.js is invoked   
-      before @magenta/music is retrieved from CDN to put 'mm' in scope. 
-      Will it work here instead? -->
+      before @magenta/music is retrieved from CDN to put 'mm' in scope. -->
   <script src="https://cdn.jsdelivr.net/npm/@magenta/music@1.7.0"></script>
     <h1>musical button grid</h1>
     

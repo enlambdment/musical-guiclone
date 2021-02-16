@@ -73,5 +73,19 @@ and weighted-sampling behavior led to the challenge of how to mediate between di
 
 While exploring available JS libraries via npm, I prioritized lightweight, easy-to-understand libraries in my search.
 Eventually I came to realize that `probability-distributions` included a method for sampling from a given array of 
-choices with an optional parameter for providing an array of "weights" (*i.e.* different frequencies per outcome), 
+choices with an optional parameter for providing an array of "weights" (*i.e.* different frequencies per outcome), while
+`simple-statistics` included methods for constructing the arrays corresponding to various standard probability distributions 
+over a discrete variable, but neither provided both. Although `simple-statistics` could be imported without the need for additional
+build tools by simply including a `script` element to retrieve the library contents via a content delivery network (CDN), the same is
+not true for `probability-distribution` because (at the time of this writing) the main module uses CommonJS syntax (*i.e.* `require(..)`) 
+that is foreign to the JS runtime for browsers, such as Chrome:
 
+```
+var crypto = require('crypto');
+```
+
+For the purpose of mediating between the different possible choices for JS module syntax in the source code of external dependencies
+vs. the need for the final JS code to be usable with the standard JS runtime available via most browsers, I chose webpack for its ability
+to build out a dependency graph starting from JS module(s) as entry point, and traversing the 3rd-party libraries in order to locate the 
+methods leveraged from these, including them in the final JS bundle. The modules in question were downloaded from `npm` and the 
+`package.json` was kept updated to reflect these dependencies. 
