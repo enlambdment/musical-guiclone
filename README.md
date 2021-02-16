@@ -41,7 +41,10 @@ As well, the `ButtonGrid` class has the following methods:
   vs. clicked vs. infilled positions on the GUI
 * `loadHash(s)` for parsing a hash into a `NoteSequence` object, for audio synthesis in browser 
   via the `magenta/music` library 
-* `getNoteSequence()` 
+* `getNoteSequence()`, for obtaining a note sequence from the current board state
+
+These methods are employed by the `index.js` for providing interactivity with a button grid representing
+
 
 ## Basic infill for two-part harmony completion
 
