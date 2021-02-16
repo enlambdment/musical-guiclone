@@ -47,7 +47,13 @@ to harmonize the current melody based upon a probabilistic method.
 
 ## Basic infill for two-part harmony completion
 
-The `infill2()` method 
+The `infill2()` method is designed to provide a second melodic voice that forms consonances with the initial
+melodic voice provided by the user (via clicks made on the GUI grid.) There are two principles behind the simplified
+model of musical motion (from one note in the musical infill to the next) implemented via this method:
+
+* because we do not want the resulting line to be excessively static, we want to reduce any tendency
+  for the next note to sound the same pitch as the current note, at each iteration 
+* at the same time, the maximum possible size (measured in semitones) of an interval for the melodi
 
 ## Bringing in 3rd-party libraries
 
